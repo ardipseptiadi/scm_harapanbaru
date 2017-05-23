@@ -33,9 +33,6 @@ $this->menu=array(
 				'columns'=>array(
 					'id_jabatan',
 					'jabatan',
-					array(
-						'class'=>'CButtonColumn',
-					),
 				),
 			)); ?>
 		</div>

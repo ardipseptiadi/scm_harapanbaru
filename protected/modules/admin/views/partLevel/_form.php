@@ -4,8 +4,6 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
-
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'part-level-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
@@ -19,16 +17,14 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+	<fieldset>
 		<?php echo $form->labelEx($model,'part_level_desc'); ?>
 		<?php echo $form->textField($model,'part_level_desc'); ?>
 		<?php echo $form->error($model,'part_level_desc'); ?>
-	</div>
+	</fieldset>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions center">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

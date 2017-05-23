@@ -4,8 +4,6 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
-
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'pelanggan-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
@@ -19,28 +17,26 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+	<fieldset>
 		<?php echo $form->labelEx($model,'id_kota'); ?>
 		<?php echo $form->textField($model,'id_kota'); ?>
 		<?php echo $form->error($model,'id_kota'); ?>
-	</div>
+	</fieldset>
 
-	<div class="row">
+	<fieldset>
 		<?php echo $form->labelEx($model,'nama'); ?>
 		<?php echo $form->textField($model,'nama',array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'nama'); ?>
-	</div>
+	</fieldset>
 
-	<div class="row">
+	<fieldset>
 		<?php echo $form->labelEx($model,'alamat'); ?>
 		<?php echo $form->textField($model,'alamat',array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'alamat'); ?>
-	</div>
+	</fieldset>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions center">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

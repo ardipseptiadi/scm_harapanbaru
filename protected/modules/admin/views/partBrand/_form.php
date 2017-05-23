@@ -4,8 +4,6 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
-
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'part-brand-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
@@ -19,16 +17,14 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+	<fieldset>
 		<?php echo $form->labelEx($model,'brand_name'); ?>
 		<?php echo $form->textField($model,'brand_name',array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'brand_name'); ?>
-	</div>
+	</fieldset>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions center">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

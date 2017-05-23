@@ -13,6 +13,23 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create JenisKendaraanPerusahaan</h1>
+<h1>Tambah Jenis Kendaraan Perusahaan</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<div class="widget-box">
+			<div class="widget-header">
+				<h4 class="widget-title">Default</h4>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+					
+					<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+</div>

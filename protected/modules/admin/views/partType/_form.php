@@ -4,7 +4,6 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'part-type-form',
@@ -19,16 +18,14 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+	<fieldset>
 		<?php echo $form->labelEx($model,'deskripsi_part'); ?>
 		<?php echo $form->textField($model,'deskripsi_part'); ?>
 		<?php echo $form->error($model,'deskripsi_part'); ?>
-	</div>
+	</fieldset>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions center">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

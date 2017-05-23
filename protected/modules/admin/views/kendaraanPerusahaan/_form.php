@@ -4,8 +4,6 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
-
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'kendaraan-perusahaan-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
@@ -19,34 +17,32 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
+	<fieldset>
 		<?php echo $form->labelEx($model,'id_jenis_kendaraan'); ?>
 		<?php echo $form->textField($model,'id_jenis_kendaraan'); ?>
 		<?php echo $form->error($model,'id_jenis_kendaraan'); ?>
-	</div>
+	</fieldset>
 
-	<div class="row">
+	<fieldset>
 		<?php echo $form->labelEx($model,'id_petugas'); ?>
 		<?php echo $form->textField($model,'id_petugas'); ?>
 		<?php echo $form->error($model,'id_petugas'); ?>
-	</div>
+	</fieldset>
 
-	<div class="row">
+	<fieldset>
 		<?php echo $form->labelEx($model,'no_polisi'); ?>
 		<?php echo $form->textField($model,'no_polisi',array('size'=>11,'maxlength'=>11)); ?>
 		<?php echo $form->error($model,'no_polisi'); ?>
-	</div>
+	</fieldset>
 
-	<div class="row">
+	<fieldset>
 		<?php echo $form->labelEx($model,'status'); ?>
 		<?php echo $form->textField($model,'status'); ?>
 		<?php echo $form->error($model,'status'); ?>
-	</div>
+	</fieldset>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions center">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->
