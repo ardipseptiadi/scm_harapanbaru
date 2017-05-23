@@ -1,0 +1,103 @@
+2017/05/22 18:51:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "account/create".' in C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php(141): CWebApplication->runController('account/create')
+#1 C:\xampp\htdocs\tryyii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\harapanbaru\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/harapanbaru/index.php?r=account/create
+---
+2017/05/23 02:16:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/user".' in C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/user')
+#1 C:\xampp\htdocs\tryyii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\harapanbaru\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/harapanbaru/index.php?r=admin/user
+HTTP_REFERER=http://localhost/harapanbaru/
+---
+2017/05/23 02:42:58 [error] [exception.CException] exception 'CException' with message 'Alias "applications.modules.admin.models.Jabatan" is invalid. Make sure it points to an existing directory or file.' in C:\xampp\htdocs\tryyii\framework\YiiBase.php:348
+Stack trace:
+#0 C:\xampp\htdocs\tryyii\framework\gii\generators\crud\CrudCode.php(59): YiiBase::import('applications.mo...', true)
+#1 C:\xampp\htdocs\tryyii\framework\validators\CInlineValidator.php(42): CrudCode->validateModel('model', Array)
+#2 C:\xampp\htdocs\tryyii\framework\validators\CValidator.php(201): CInlineValidator->validateAttribute(Object(CrudCode), 'model')
+#3 C:\xampp\htdocs\tryyii\framework\base\CModel.php(159): CValidator->validate(Object(CrudCode), NULL)
+#4 C:\xampp\htdocs\tryyii\framework\gii\CCodeGenerator.php(159): CModel->validate()
+#5 C:\xampp\htdocs\tryyii\framework\gii\CCodeGenerator.php(63): CCodeGenerator->prepare()
+#6 C:\xampp\htdocs\tryyii\framework\web\actions\CInlineAction.php(49): CCodeGenerator->actionIndex()
+#7 C:\xampp\htdocs\tryyii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 C:\xampp\htdocs\tryyii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#9 C:\xampp\htdocs\tryyii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php(282): CController->run('index')
+#11 C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php(141): CWebApplication->runController('gii/crud/index')
+#12 C:\xampp\htdocs\tryyii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\harapanbaru\index.php(19): CApplication->run()
+#14 {main}
+REQUEST_URI=/harapanbaru/index.php?r=gii/crud/index
+HTTP_REFERER=http://localhost/harapanbaru/index.php?r=gii/crud/index
+---
+2017/05/23 02:48:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/user".' in C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/user')
+#1 C:\xampp\htdocs\tryyii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\harapanbaru\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/harapanbaru/index.php?r=admin/user
+HTTP_REFERER=http://localhost/harapanbaru/
+---
+2017/05/23 02:48:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/user".' in C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/user')
+#1 C:\xampp\htdocs\tryyii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\harapanbaru\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/harapanbaru/index.php?r=admin/user
+HTTP_REFERER=http://localhost/harapanbaru/
+---
+2017/05/23 02:50:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/jabatan".' in C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/jabatan')
+#1 C:\xampp\htdocs\tryyii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\harapanbaru\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/harapanbaru/index.php?r=admin/jabatan
+HTTP_REFERER=http://localhost/harapanbaru/index.php?r=admin/jenisKendaraanPerusahaan
+---
+2017/05/23 02:50:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "admin/jabatan".' in C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php(141): CWebApplication->runController('admin/jabatan')
+#1 C:\xampp\htdocs\tryyii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\harapanbaru\index.php(19): CApplication->run()
+#3 {main}
+REQUEST_URI=/harapanbaru/index.php?r=admin/jabatan
+HTTP_REFERER=http://localhost/harapanbaru/index.php?r=admin/jenisKendaraanPerusahaan
+---
+2017/05/23 07:19:01 [error] [php] include(HarapanBaruGrid.php): failed to open stream: No such file or directory (C:\xampp\htdocs\tryyii\framework\YiiBase.php:432)
+Stack trace:
+#0 unknown(0): spl_autoload_call()
+#1 C:\xampp\htdocs\tryyii\framework\YiiBase.php(303): class_exists()
+#2 C:\xampp\htdocs\tryyii\framework\web\CWidgetFactory.php(146): import()
+#3 C:\xampp\htdocs\tryyii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget()
+#4 C:\xampp\htdocs\tryyii\framework\web\CBaseController.php(180): JabatanController->createWidget()
+#5 C:\xampp\htdocs\harapanbaru\protected\modules\admin\views\jabatan\index.php(32): JabatanController->widget()
+#6 C:\xampp\htdocs\tryyii\framework\web\CBaseController.php(126): require()
+#7 C:\xampp\htdocs\tryyii\framework\web\CBaseController.php(95): JabatanController->renderInternal()
+#8 C:\xampp\htdocs\tryyii\framework\web\CController.php(869): JabatanController->renderFile()
+#9 C:\xampp\htdocs\tryyii\framework\web\CController.php(782): JabatanController->renderPartial()
+#10 C:\xampp\htdocs\harapanbaru\protected\modules\admin\controllers\JabatanController.php(128): JabatanController->render()
+#11 C:\xampp\htdocs\tryyii\framework\web\actions\CInlineAction.php(49): JabatanController->actionIndex()
+#12 C:\xampp\htdocs\tryyii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#13 C:\xampp\htdocs\tryyii\framework\web\filters\CFilterChain.php(133): JabatanController->runAction()
+#14 C:\xampp\htdocs\tryyii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\htdocs\tryyii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#16 C:\xampp\htdocs\tryyii\framework\web\filters\CInlineFilter.php(58): JabatanController->filterAccessControl()
+#17 C:\xampp\htdocs\tryyii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#18 C:\xampp\htdocs\tryyii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\htdocs\tryyii\framework\web\CController.php(265): JabatanController->runActionWithFilters()
+#20 C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php(282): JabatanController->run()
+#21 C:\xampp\htdocs\tryyii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#22 C:\xampp\htdocs\tryyii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\harapanbaru\index.php(19): CWebApplication->run()
+REQUEST_URI=/harapanbaru/index.php?r=admin/jabatan
+in C:\xampp\htdocs\harapanbaru\protected\modules\admin\views\jabatan\index.php (32)
+in C:\xampp\htdocs\harapanbaru\protected\modules\admin\controllers\JabatanController.php (128)
+in C:\xampp\htdocs\harapanbaru\index.php (19)
