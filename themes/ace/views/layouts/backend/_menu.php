@@ -154,9 +154,9 @@
 							</li>
 
 							<li class="">
-								<a href="<?php echo Yii::app()->createUrl('admin/karyawan'); ?>">
+								<a href="<?php echo Yii::app()->createUrl('admin/partLevel'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Karyawan
+									Part Level
 								</a>
 
 								<b class="arrow"></b>
