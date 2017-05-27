@@ -15,7 +15,7 @@ class KendaraanPerusahaanController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			// 'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -66,6 +66,10 @@ class KendaraanPerusahaanController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
+		$jeniskendaraan = JenisKendaraanPerusahaan::model()->findAll();
+		$list_jenis_kendaraan = CHtml::listData($jeniskendaraan,'id_jenis_kendaraan','jenis');
+		$petugas = Petugas::model()->findAll();
+		$list_petugas = CHtml::listData($petugas,'id_petugas','nama');
 
 		if(isset($_POST['KendaraanPerusahaan']))
 		{
@@ -74,9 +78,7 @@ class KendaraanPerusahaanController extends Controller
 				$this->redirect(array('view','id'=>$model->id_kendaraan));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create',get_defined_vars());
 	}
 
 	/**

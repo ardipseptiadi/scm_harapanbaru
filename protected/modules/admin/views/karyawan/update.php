@@ -16,6 +16,21 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Karyawan <?php echo $model->id_karyawan; ?></h1>
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<div class="widget-box">
+			<div class="widget-header">
+				<h4 class="widget-title">Ubah Karyawan</h4>
+			</div>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+			<div class="widget-body">
+				<div class="widget-main">
+					
+					<?php $this->renderPartial('_form', get_defined_vars()); ?>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+</div>

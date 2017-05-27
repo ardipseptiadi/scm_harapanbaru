@@ -63,7 +63,7 @@ class Karyawan extends CActiveRecord
 		return array(
 			'id_karyawan' => 'Id Karyawan',
 			'nip' => 'Nip',
-			'id_jabatan' => 'Id Jabatan',
+			'id_jabatan' => 'Jabatan',
 			'nama' => 'Nama',
 			'alamat' => 'Alamat',
 			'status' => 'Status',

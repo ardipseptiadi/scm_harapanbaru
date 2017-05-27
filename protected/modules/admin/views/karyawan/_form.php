@@ -6,6 +6,7 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'karyawan-form',
+	'htmlOptions' => array('class'=>'form-horizontal'),
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -13,40 +14,50 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<!--<p class="note">Fields with <span class="required">*</span> are required.</p>-->
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'nip'); ?>
-		<?php echo $form->textField($model,'nip',array('size'=>11,'maxlength'=>11)); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'nip',['class'=>'col-sm-2 control-label']); ?>
+		<div class="col-sm-10">
+			<?php echo $form->textField($model,'nip',array('size'=>11,'maxlength'=>11)); ?>
+		</div>
 		<?php echo $form->error($model,'nip'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'id_jabatan'); ?>
-		<?php echo $form->textField($model,'id_jabatan'); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'id_jabatan',['class'=>'col-sm-2 control-label']); ?>
+		<div class="col-sm-10">
+			<?php echo $form->dropDownList($model,'id_jabatan',$list_jabatan,array('empty'=>'--Pilih Jabatan--')); ?>
+		</div>
 		<?php echo $form->error($model,'id_jabatan'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'nama'); ?>
-		<?php echo $form->textField($model,'nama',array('size'=>50,'maxlength'=>50)); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'nama',['class'=>'col-sm-2 control-label']); ?>
+		<div class="col-sm-10">
+			<?php echo $form->textField($model,'nama',array('size'=>50,'maxlength'=>50)); ?>
+		</div>
 		<?php echo $form->error($model,'nama'); ?>
-	</fieldset>
+	</div>
 	
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'alamat'); ?>
-		<?php echo $form->textArea($model,'alamat',array('rows'=>6, 'cols'=>50)); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'alamat',['class'=>'col-sm-2 control-label']); ?>
+		<div class="col-sm-10">
+			<?php echo $form->textArea($model,'alamat',array('rows'=>6, 'cols'=>50)); ?>
+		</div>
 		<?php echo $form->error($model,'alamat'); ?>
-	</fieldset>
+	</div>
 	
-	<fieldset>
-		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->textField($model,'status'); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'status',['class'=>'col-sm-2 control-label']); ?>
+		<div class="col-sm-10">
+			<?php echo $form->radioButtonList($model,'status',array('0'=>'Tidak Aktif','1'=>'Aktif')); ?>
+		</div>
 		<?php echo $form->error($model,'status'); ?>
-	</fieldset>
+	</div>
 	
 	<div class="form-actions center">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>

@@ -35,7 +35,7 @@
 
 				<ul class="nav nav-list">
 					<li class="active">
-						<a href="index.html">
+						<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -45,7 +45,7 @@
 
 					<li class="">
 						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-list"></i>
+							<i class="menu-icon fa fa-hdd-o"></i>
 							<span class="menu-text"> Data Master </span>
 
 							<b class="arrow fa fa-angle-down"></b>
@@ -134,6 +134,14 @@
 
 								<b class="arrow"></b>
 							</li>
+							<li class="">
+								<a href="<?php echo Yii::app()->createUrl('admin/provinsi'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Provinsi
+								</a>
+
+								<b class="arrow"></b>
+							</li>
 
 							<li class="">
 								<a href="<?php echo Yii::app()->createUrl('admin/partBrand'); ?>">
@@ -160,6 +168,129 @@
 								</a>
 
 								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-external-link"></i>
+							<span class="menu-text"> Pengadaan </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Pemesanan
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Pengadaan
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Peramalan
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+
+					</li>
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-inbox"></i>
+							<span class="menu-text"> Gudang </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Persediaan
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Pengiriman
+								</a>
+							</li>
+							<li>
+								<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Monitoring Pengiriman
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li>
+								<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Monitoring Pemesanan
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-globe"></i>
+							<span class="menu-text"> Pemasaran </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Pemesanan
+								</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-laptop"></i>
+							<span class="menu-text"> Operasional </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Monitoring Persediaan
+								</a>
+							</li>
+							<li class="">
+								<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Monitoring Pengiriman
+								</a>
 							</li>
 						</ul>
 					</li>

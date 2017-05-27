@@ -16,9 +16,10 @@ $this->menu=array(
 	<div class="col-xs-12">
 		<h3 class="header smaller lighter blue">Part</h3>
 		
-		<p>
+		<div class="button-groups">
 			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('admin/part/create'); ?>">Tambah</a>
-		</p>
+			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('admin/part/admin'); ?>">Manage</a>
+		</div>
 		
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>
@@ -31,12 +32,19 @@ $this->menu=array(
 				'id'=>'dynamic-table',
 				'dataProvider'=>$dataProvider,
 				'columns'=>array(
-					'id_part',
-					'id_parent',
-					'id_brand',
-					'id_part_level',
-					'id_part_type',
 					'part_code',
+					array(
+						'name'=>'Parent Part'
+					),
+					array(
+						'name'=>'Part Brand'
+					),
+					array(
+						'name'=>'Part Level'
+					),
+					array(
+						'name'=>'Part Type'
+					),
 					'nama_part',
 					'berat',
 					'keterangan',

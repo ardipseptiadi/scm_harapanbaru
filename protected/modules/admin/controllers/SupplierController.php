@@ -15,7 +15,7 @@ class SupplierController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			// 'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -74,9 +74,7 @@ class SupplierController extends Controller
 				$this->redirect(array('view','id'=>$model->id_supplier));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create',get_defined_vars());
 	}
 
 	/**

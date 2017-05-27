@@ -49,6 +49,7 @@ class KendaraanPerusahaan extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'idJenisKendaraan' => array(self::BELONGS_TO, 'JenisKendaraanPerusahaan', 'id_jenis_kendaraan'),
+			'idPetugas' => array(self::BELONGS_TO, 'Petugas', 'id_petugas'),
 		);
 	}
 
@@ -59,8 +60,8 @@ class KendaraanPerusahaan extends CActiveRecord
 	{
 		return array(
 			'id_kendaraan' => 'Id Kendaraan',
-			'id_jenis_kendaraan' => 'Id Jenis Kendaraan',
-			'id_petugas' => 'Id Petugas',
+			'id_jenis_kendaraan' => 'Jenis Kendaraan',
+			'id_petugas' => 'Petugas',
 			'no_polisi' => 'No Polisi',
 			'status' => 'Status',
 		);
