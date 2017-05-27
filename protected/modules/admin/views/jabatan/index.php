@@ -16,9 +16,10 @@ $this->menu=array(
 	<div class="col-xs-12">
 		<h3 class="header smaller lighter blue">Jabatan</h3>
 		
-		<p>
+		<div class="button-groups">
 			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('admin/jabatan/create'); ?>">Tambah</a>
-		</p>
+			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('admin/jabatan/admin'); ?>">Manage</a>
+		</div>
 		
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>

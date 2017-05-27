@@ -15,7 +15,7 @@ class KaryawanController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			// 'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -67,6 +67,9 @@ class KaryawanController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		$jabatan = Jabatan::model()->findAll();
+		$list_jabatan = CHtml::listData($jabatan,'id_jabatan','jabatan');
+
 		if(isset($_POST['Karyawan']))
 		{
 			$model->attributes=$_POST['Karyawan'];
@@ -74,9 +77,7 @@ class KaryawanController extends Controller
 				$this->redirect(array('view','id'=>$model->id_karyawan));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create',get_defined_vars());
 	}
 
 	/**
@@ -91,6 +92,9 @@ class KaryawanController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		$jabatan = Jabatan::model()->findAll();
+		$list_jabatan = CHtml::listData($jabatan,'id_jabatan','jabatan');
+
 		if(isset($_POST['Karyawan']))
 		{
 			$model->attributes=$_POST['Karyawan'];
@@ -98,9 +102,7 @@ class KaryawanController extends Controller
 				$this->redirect(array('view','id'=>$model->id_karyawan));
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update',get_defined_vars());
 	}
 
 	/**

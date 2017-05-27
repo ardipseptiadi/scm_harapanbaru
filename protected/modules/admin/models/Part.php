@@ -40,7 +40,7 @@ class Part extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_parent, id_brand, id_part_level, id_part_type, nama_part', 'required'),
+			array(' id_brand, id_part_level, id_part_type, nama_part', 'required'),
 			array('id_parent, id_brand, id_part_level, id_part_type, berat, hpp, harga', 'numerical', 'integerOnly'=>true),
 			array('part_code', 'length', 'max'=>15),
 			array('nama_part', 'length', 'max'=>50),
@@ -63,6 +63,8 @@ class Part extends CActiveRecord
 			'idBrand' => array(self::BELONGS_TO, 'PartBrand', 'id_brand'),
 			'idPartLevel' => array(self::BELONGS_TO, 'PartLevel', 'id_part_level'),
 			'idPartType' => array(self::BELONGS_TO, 'PartType', 'id_part_type'),
+			'parentPart'=>array(self::BELONGS_TO, 'Part', 'id_parent'),
+			'childPart'=>array(self::HAS_MANY,'Part','id_parent'),
 		);
 	}
 
@@ -73,10 +75,10 @@ class Part extends CActiveRecord
 	{
 		return array(
 			'id_part' => 'Id Part',
-			'id_parent' => 'Id Parent',
-			'id_brand' => 'Id Brand',
-			'id_part_level' => 'Id Part Level',
-			'id_part_type' => 'Id Part Type',
+			'id_parent' => 'Parent',
+			'id_brand' => 'Brand',
+			'id_part_level' => 'Part Level',
+			'id_part_type' => 'Part Type',
 			'part_code' => 'Part Code',
 			'nama_part' => 'Nama Part',
 			'berat' => 'Berat',

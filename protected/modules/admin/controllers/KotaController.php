@@ -67,6 +67,9 @@ class KotaController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+		$provinsi = Provinsi::model()->findAll();
+		$list_provinsi = CHtml::listData($provinsi,'id_provinsi','nama');
+
 		if(isset($_POST['Kota']))
 		{
 			$model->attributes=$_POST['Kota'];
@@ -74,9 +77,7 @@ class KotaController extends Controller
 				$this->redirect(array('view','id'=>$model->id_kota));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create',get_defined_vars());
 	}
 
 	/**

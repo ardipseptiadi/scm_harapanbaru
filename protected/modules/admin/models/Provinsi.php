@@ -55,7 +55,7 @@ class Provinsi extends CActiveRecord
 	{
 		return array(
 			'id_provinsi' => 'Id Provinsi',
-			'nama' => 'Nama',
+			'nama' => 'Nama Provinsi',
 		);
 	}
 

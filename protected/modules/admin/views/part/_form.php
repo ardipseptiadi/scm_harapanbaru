@@ -7,6 +7,7 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'part-form',
+	'htmlOptions'=>array('class'=>'form-horizontal'),
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -14,75 +15,97 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<!--<p class="note">Fields with <span class="required">*</span> are required.</p>-->
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'id_parent'); ?>
-		<?php echo $form->textField($model,'id_parent'); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'id_parent',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo $form->dropDownList($model,'id_parent',$list_part,array('empty'=>'--parent--')); ?>
+		</div>
 		<?php echo $form->error($model,'id_parent'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'id_brand'); ?>
-		<?php echo $form->textField($model,'id_brand'); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'id_brand',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo $form->dropDownList($model,'id_brand',$list_brand,array('empty'=>'--brand--')); ?>
+		</div>
 		<?php echo $form->error($model,'id_brand'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'id_part_level'); ?>
-		<?php echo $form->textField($model,'id_part_level'); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'id_part_level',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo $form->dropDownList($model,'id_part_level',$list_level,array('empty'=>'--part level--')); ?>
+		</div>
 		<?php echo $form->error($model,'id_part_level'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'id_part_type'); ?>
-		<?php echo $form->textField($model,'id_part_type'); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'id_part_type',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo $form->dropDownList($model,'id_part_type',$list_type,array('empty'=>'--part type--')); ?>
+		</div>
 		<?php echo $form->error($model,'id_part_type'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'part_code'); ?>
-		<?php echo $form->textField($model,'part_code',array('size'=>15,'maxlength'=>15)); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'part_code',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo $form->textField($model,'part_code',array('size'=>15,'maxlength'=>15)); ?>
+		</div>
 		<?php echo $form->error($model,'part_code'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'nama_part'); ?>
-		<?php echo $form->textField($model,'nama_part',array('size'=>50,'maxlength'=>50)); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'nama_part',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo $form->textField($model,'nama_part',array('size'=>50,'maxlength'=>50)); ?>
+		</div>
 		<?php echo $form->error($model,'nama_part'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'berat'); ?>
-		<?php echo $form->textField($model,'berat'); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'berat',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo $form->textField($model,'berat'); ?>
+		</div>
 		<?php echo $form->error($model,'berat'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'keterangan'); ?>
-		<?php echo $form->textArea($model,'keterangan',array('rows'=>6, 'cols'=>50)); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'keterangan',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo $form->textArea($model,'keterangan',array('rows'=>6, 'cols'=>50)); ?>
+		</div>
 		<?php echo $form->error($model,'keterangan'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'satuan'); ?>
-		<?php echo $form->textField($model,'satuan',array('size'=>10,'maxlength'=>10)); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'satuan',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo $form->textField($model,'satuan',array('size'=>10,'maxlength'=>10)); ?>
+		</div>
 		<?php echo $form->error($model,'satuan'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'hpp'); ?>
-		<?php echo $form->textField($model,'hpp'); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'hpp',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo $form->textField($model,'hpp'); ?>
+		</div>
 		<?php echo $form->error($model,'hpp'); ?>
-	</fieldset>
+	</div>
 
-	<fieldset>
-		<?php echo $form->labelEx($model,'harga'); ?>
-		<?php echo $form->textField($model,'harga'); ?>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'harga',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo $form->textField($model,'harga'); ?>
+		</div>>
 		<?php echo $form->error($model,'harga'); ?>
-	</fieldset>
+	</div>
 
 	<div class="form-actions center">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>
