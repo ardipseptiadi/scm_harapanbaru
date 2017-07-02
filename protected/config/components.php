@@ -83,7 +83,7 @@ return array(
           'login_ace-js' => array(
               'basePath' => 'webroot.themes.ace.assets',
               'js' => array(
-                  'js/jquery-2.1.4.min.js',
+                //   'js/jquery-2.1.4.min.js',
 
               ),
           ),
