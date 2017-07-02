@@ -261,7 +261,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="<?php echo Yii::app()->createUrl('site/index'); ?>">
+								<a href="<?php echo Yii::app()->createUrl('pemasaran/pemesanan'); ?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Pemesanan
 								</a>
