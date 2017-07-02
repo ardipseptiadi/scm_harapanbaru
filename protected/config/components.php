@@ -15,6 +15,11 @@ return array(
           // 'jquery.ba-bbq.js' => FALSE,
       ),
       'packages' => array(
+          'jquery' => array(
+            'baseUrl'=>'js',
+            'js'=>array('jquery-1.8.3.min.js'),
+            'coreScriptPosition'=>CClientScript::POS_END
+          ),
           'ace-js' => array(
               'basePath' => 'webroot.themes.ace.assets',
               'js' => array(
@@ -27,7 +32,7 @@ return array(
           'ace-bottom-js' => array(
               'basePath' => 'webroot.themes.ace.assets',
               'js' => array(
-                  'js/jquery-2.1.4.min.js',
+                //   'js/jquery-2.1.4.min.js',
                   'js/bootstrap.min.js',
                   'js/jquery-ui.custom.min.js',
                   'js/jquery.ui.touch-punch.min.js',
