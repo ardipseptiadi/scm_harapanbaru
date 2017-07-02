@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
 		<title><?php echo CHtml::encode($this->pageTitle); ?></title>
