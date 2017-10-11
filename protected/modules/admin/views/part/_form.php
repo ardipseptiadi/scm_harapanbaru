@@ -107,6 +107,13 @@
 		<?php echo $form->error($model,'harga'); ?>
 	</div>
 
+	<div class="form-group">
+		<?php echo CHtml::label('Stok Awal','stok_awal',['class'=>'col-sm-3 control-label']); ?>
+		<div class="col-sm-8">
+			<?php echo CHtml::numberField('stok_awal','',['placeholder'=>'0','required'=>true,'min'=>0]); ?>
+		</div>
+	</div>
+
 	<div class="form-actions center">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>
 	</div>

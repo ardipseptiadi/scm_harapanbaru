@@ -15,12 +15,12 @@
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'no_order',['class'=>'col-sm-2 control-label']); ?>
 		<div class="col-sm-10">
-			<?php echo $form->textField($model,'no_order',array('size'=>50,'maxlength'=>50)); ?>
+			<?php echo $form->textField($model,'no_order',array('size'=>50,'maxlength'=>50,'disabled'=>true)); ?>
 		</div>
 		<?php echo $form->error($model,'no_order'); ?>
 	</div>
 
-    <div class="form-group">
+  <div class="form-group">
 		<?php echo $form->labelEx($model,'id_pelanggan',['class'=>'col-sm-2 control-label']); ?>
 		<div class="col-sm-10">
 			<?php
@@ -32,7 +32,7 @@
 		<?php echo $form->error($model,'id_pelanggan'); ?>
 	</div>
 
-    <div class="form-group">
+  <div class="form-group">
 		<?php echo $form->labelEx($model,'tgl_pesan',['class'=>'col-sm-2 control-label']); ?>
 		<div class="col-sm-10">
 			<?php echo $form->textField($model,'tgl_pesan',array('size'=>50,'maxlength'=>50,'class'=>'tgl_form')); ?>
@@ -46,6 +46,18 @@
 			<?php echo $form->textField($model,'tgl_kirim',array('size'=>50,'maxlength'=>50,'class'=>'tgl_form')); ?>
 		</div>
 		<?php echo $form->error($model,'tgl_kirim'); ?>
+	</div>
+
+	<div class="form-group">
+		<?php echo CHtml::label('Pembayaran','pembayaran',['class'=>'col-sm-2 control-label']);?>
+		<div class="col-sm-10">
+			<?php
+			echo $form->dropDownList($model, 'id_jenis_bayar', $list_jenis_bayar,array(
+                                                        'empty'=>'(Pilih Jenis Bayar)',
+                                                        'class'=>'span4 m-wrap'
+                                                    ));?>
+		</div>
+		<?php echo $form->error($model,'id_jenis_bayar'); ?>
 	</div>
 
     <div class="form-group">

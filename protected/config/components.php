@@ -45,8 +45,8 @@ return array(
                   'js/ace.min.js',
                   'js/bootstrap-datepicker.min.js',
                   'js/bootstrap-timepicker.min.js',
-                  'js/daterangepicker.min.js',
-                  'js/bootstrap-datetimepicker.min.js',
+                  // 'js/daterangepicker.min.js',
+                  // 'js/bootstrap-datetimepicker.min.js',
 
               ),
               // 'depends' => array('jquery'),
@@ -60,10 +60,10 @@ return array(
                   'css/ace.min.css',
                   'css/ace-skins.min.css',
                   'css/ace-rtl.min.css',
-                  'css/bootstrap-datepicker3.css',
+                  'css/bootstrap-datepicker3.min.css',
                   'css/bootstrap-timepicker.min.css',
                   'css/daterangepicker.min.css',
-                 ' css/bootstrap-datetimepicker.min.css',
+                  'css/bootstrap-datetimepicker.min.css',
 
               ),
           ),
@@ -83,7 +83,7 @@ return array(
           'login_ace-js' => array(
               'basePath' => 'webroot.themes.ace.assets',
               'js' => array(
-                  'js/jquery-2.1.4.min.js',
+                  // 'js/jquery-2.1.4.min.js',
 
               ),
           ),

@@ -20,6 +20,7 @@
  */
 class Pesanan extends CActiveRecord
 {
+	public $id_jenis_bayar;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -37,12 +38,12 @@ class Pesanan extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_pelanggan, id_pembayaran, created_date', 'required'),
-			array('id_pelanggan, id_pembayaran, status_bayar, is_deleted', 'numerical', 'integerOnly'=>true),
-			array('no_order', 'length', 'max'=>11),
-			array('tgl_pesan, tgl_kirim', 'safe'),
+			array('id_pelanggan, id_pembayaran, status_bayar,is_verifikasi, is_deleted', 'numerical', 'integerOnly'=>true),
+			array('no_order', 'length', 'max'=>25),
+			array('tgl_pesan, tgl_kirim,is_verifikasi', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_pesanan, id_pelanggan, no_order, id_pembayaran, tgl_pesan, tgl_kirim, status_bayar, created_date, is_deleted', 'safe', 'on'=>'search'),
+			array('id_pesanan, id_pelanggan, no_order, id_pembayaran, tgl_pesan, tgl_kirim, status_bayar,is_verifikasi, created_date, is_deleted', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,6 +73,7 @@ class Pesanan extends CActiveRecord
 			'tgl_pesan' => 'Tgl Pesan',
 			'tgl_kirim' => 'Tgl Kirim',
 			'status_bayar' => 'Status Bayar',
+			'is_verifikasi' => 'Verifikasi',
 			'created_date' => 'Created Date',
 			'is_deleted' => 'Is Deleted',
 		);
@@ -102,6 +104,7 @@ class Pesanan extends CActiveRecord
 		$criteria->compare('tgl_pesan',$this->tgl_pesan,true);
 		$criteria->compare('tgl_kirim',$this->tgl_kirim,true);
 		$criteria->compare('status_bayar',$this->status_bayar);
+		$criteria->compare('is_verifikasi',$this->is_verifikasi);
 		$criteria->compare('created_date',$this->created_date,true);
 		$criteria->compare('is_deleted',$this->is_deleted);
 
@@ -119,6 +122,18 @@ class Pesanan extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function generateNoOrder()
+	{
+		$criteria = new CDbCriteria();
+		$criteria->select= "t.no_order";
+		$criteria->condition= "t.no_order IS NOT NULL AND t.no_order != ''";
+		$criteria->order = "t.created_date DESC";
+		$criteria->limit="1";
+
+		return $this->find($criteria);
+
 	}
 
 	public function generatePembayaran()

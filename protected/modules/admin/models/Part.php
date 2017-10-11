@@ -1,5 +1,5 @@
 <?php
-
+Yii::import('application.modules.gudang.models.*');
 /**
  * This is the model class for table "hb_part".
  *
@@ -24,6 +24,7 @@
  */
 class Part extends CActiveRecord
 {
+	public $stok_awal;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -65,6 +66,7 @@ class Part extends CActiveRecord
 			'idPartType' => array(self::BELONGS_TO, 'PartType', 'id_part_type'),
 			'parentPart'=>array(self::BELONGS_TO, 'Part', 'id_parent'),
 			'childPart'=>array(self::HAS_MANY,'Part','id_parent'),
+			'partStock'=>array(self::BELONGS_TO, 'PartStock', 'id_parent'),
 		);
 	}
 
@@ -134,5 +136,16 @@ class Part extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	protected function afterSave()
+	{
+		$partStock = new PartStock;
+		$partStock->id_part = $this->id_part;
+		$partStock->qty_in_hand = $this->stok_awal;
+		$partStock->last_update = date('Y-m-d h:i:s');
+		$partStock->updated_by = Yii::app()->user->name;
+
+		return $partStock->save();
 	}
 }

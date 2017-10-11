@@ -24,11 +24,17 @@ class PemesananController extends Controller
 	{
 		$model = new Pesanan();
 
+		$no_order = $this->generateNoOrder();
 		$pelanggan = Pelanggan::model()->findAll(array('order' => 'nama'));
-    	$list_pelanggan = CHtml::listData($pelanggan,'id_pelanggan', 'nama');
+    $list_pelanggan = CHtml::listData($pelanggan,'id_pelanggan', 'nama');
 
 		$part = Part::model()->findAll(array('order' => 'nama_part'));
-    	$list_part = CHtml::listData($part,'id_part', 'nama_part');
+    $list_part = CHtml::listData($part,'id_part', 'nama_part');
+
+		$jenis_bayar = JenisBayar::model()->findAll(array('order'=>'keterangan'));
+		$list_jenis_bayar = CHtml::listData($jenis_bayar,'id_jenis_bayar','keterangan');
+
+		$model->no_order = $no_order;
 
 		if(isset($_POST['Pesanan']))
 		{
@@ -59,6 +65,19 @@ class PemesananController extends Controller
 							'keyField'=>'id'
 						));
 		$this->render('create',get_defined_vars());
+	}
+
+	public function generateNoOrder()
+	{
+		$lastOrder = Pesanan::model()->generateNoOrder();
+		if($lastOrder){
+			$arrTemp = explode('/',$lastOrder->no_order);
+			$arrTemp[2] = $arrTemp[2]+1;
+			$no_urut = str_pad($arrTemp[2],5,"0",STR_PAD_LEFT);
+		}else{
+			$no_urut = "00001";
+		}
+		return "PSN/".date("dmy")."/".$no_urut;
 	}
 
 	public function actionAddCart()

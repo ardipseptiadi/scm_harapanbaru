@@ -79,8 +79,10 @@ class PartController extends Controller
 		if(isset($_POST['Part']))
 		{
 			$model->attributes=$_POST['Part'];
+			$model->stok_awal = $_POST['stok_awal'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_part));
+			
 		}
 
 		$this->render('create',get_defined_vars());
