@@ -18,4 +18,4 @@ $this->menu=array(
 
 <h1>Update Part <?php echo $model->id_part; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', get_defined_vars()); ?>

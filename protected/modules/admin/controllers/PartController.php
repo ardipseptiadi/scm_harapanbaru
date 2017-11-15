@@ -99,7 +99,14 @@ class PartController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+		$part = Part::model()->findAll();
+		$list_part = CHtml::listData($part,'id_part','nama_part');
+		$brand = PartBrand::model()->findAll();
+		$list_brand = CHtml::listData($brand,'id_part_brand','brand_name');
+		$type = PartType::model()->findAll();
+		$list_type = CHtml::listData($type,'id_part_type','deskripsi_part');
+		$level = PartLevel::model()->findAll();
+		$list_level = CHtml::listData($level,'id_part_level','part_level_desc');
 		if(isset($_POST['Part']))
 		{
 			$model->attributes=$_POST['Part'];
@@ -107,9 +114,7 @@ class PartController extends Controller
 				$this->redirect(array('view','id'=>$model->id_part));
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update',get_defined_vars());
 	}
 
 	/**
