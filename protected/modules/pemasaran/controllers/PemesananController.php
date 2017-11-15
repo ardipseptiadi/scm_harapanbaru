@@ -11,6 +11,7 @@ class PemesananController extends Controller
 	{
 		$dataProvider = new CActiveDataProvider('Pesanan',array(
 			'criteria' => array(
+				'condition'=>'is_deleted = 0',
 				'order'=>'created_date DESC',
 			),
 			'pagination' => array(
@@ -67,6 +68,77 @@ class PemesananController extends Controller
 		$this->render('create',get_defined_vars());
 	}
 
+	public function actionUbah($id)
+	{
+		$model = Pesanan::model()->findByPk($id);
+		$pelanggan = Pelanggan::model()->findAll(array('order' => 'nama'));
+    $list_pelanggan = CHtml::listData($pelanggan,'id_pelanggan', 'nama');
+
+		$part = Part::model()->findAll(array('order' => 'nama_part'));
+    $list_part = CHtml::listData($part,'id_part', 'nama_part');
+
+		$jenis_bayar = JenisBayar::model()->findAll(array('order'=>'keterangan'));
+		$list_jenis_bayar = CHtml::listData($jenis_bayar,'id_jenis_bayar','keterangan');
+
+		if(isset($_POST['Pesanan'])){
+				$model->attributes = $_POST['Pesanan'];
+				// $model->id_pembayaran = $model->generatePembayaran();
+				// $model->created_date = date('Y-m-d h:i:s');
+				if($model->update())
+				{
+					$p_detail_lama = PesananDetail::model()->findAllByAttributes(['id_pesanan'=>$id]);
+					if($p_detail_lama){
+						foreach ($p_detail_lama as $detail_lama) {
+							$detail_lama->delete();
+						}
+					}
+					$data_detail = Yii::app()->session['cart'];
+					foreach($data_detail as $detail){
+						$p_detail = new PesananDetail();
+						$p_detail->id_pesanan = $id;
+						$p_detail->id_part = $detail["id_part"];
+						$p_detail->qty = $detail["qty"];
+						$p_detail->save();
+					}
+					unset(Yii::app()->session['cart']);
+					$this->redirect(array('index'));
+				}
+		}elseif(!isset($_GET['ajax'])){
+			unset(Yii::app()->session['cart']);
+		}
+		$data = [];
+		$psd_detail = PesananDetail::model()->findAllByAttributes(['id_pesanan'=>$id,'is_deleted'=>0]);
+		foreach ($psd_detail as $detail) {
+			if(count($data)<1){
+				$id = 1;
+			}else{
+				$id = count($data) +1;
+			}
+			$prd = Part::model()->findByPk($detail->id_part);
+			array_push($data,['id'=>$id,'id_part'=>$detail->id_part,'nama'=>$prd->nama_part,'qty'=>$detail->qty]);
+		}
+		if(!isset(Yii::app()->session['cart'])){
+			Yii::app()->session['cart'] = $data;
+		}
+		$dt =Yii::app()->session['cart'];
+		$cart = new CArrayDataProvider($dt,array(
+							'keyField'=>'id'
+						));
+		$this->render('ubah',get_defined_vars());
+	}
+
+	public function actionHapus($id)
+	{
+		if($id){
+			$model = Pesanan::model()->findByPk($id);
+			$model->is_deleted = 1;
+			$model->update();
+			$this->redirect(['index']);
+		}else{
+			throw new Exception("ID Tidak Ditemukan", 1);
+		}
+	}
+
 	public function generateNoOrder()
 	{
 		$lastOrder = Pesanan::model()->generateNoOrder();
@@ -101,6 +173,7 @@ class PemesananController extends Controller
 		$id = Yii::app()->request->getPost('id');
 		$id_part = Yii::app()->request->getPost('id');
 		$data = Yii::app()->session['cart'];
+
 		unset($data[($id-1)]);
 		Yii::app()->session['cart'] = $data;
 	}
@@ -118,7 +191,7 @@ class PemesananController extends Controller
 	{
 		$dataProvider = new CActiveDataProvider('PesananDetail',array(
 			'criteria' => array(
-				'condition'=>'id_pesanan = '.$id,
+				'condition'=>"id_pesanan = {$id} AND is_deleted = 0",
 				'order'=>'created_date DESC',
 			),
 			'pagination' => array(

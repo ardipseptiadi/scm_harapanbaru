@@ -36,46 +36,62 @@ $this->breadcrumbs=array(
 		</div>
 		<div>
 			<?php
-			// $this->widget('HarapanBaruGrid', array(
-			// 	'id'=>'dynamic-table',
-			// 	'dataProvider'=>$dataProvider,
-			// 	'columns'=>array(
-			// 		array(
-			// 			'header'=>'Nama Part',
-			// 			'name' => 'idPart.nama_part',
-			// 		),
-			// 		// array(
-			// 		// 	'header'=>'Bulan Peramalan',
-			// 		// 	'name'=>'peramalan',
-			// 		// ),
-			// 		array(
-			// 			'header' => 'Hasil',
-			// 			'name' => 'hasil'
-			// 		),
-			// 		// array(
-			// 		// 	'header' => 'Status',
-			// 		// 	'value' => '$data->status()'
-			// 		// ),
-			// 		array(
-			// 			'header'=>'Aksi',
-			// 			'name'=>'aksi',
-			// 			'value' => '
-			// 				CHtml::link("Update",
-			// 					array(
-			// 						"peramalan/update",
-			// 						"id"=>"$data->id_part"
-			// 					)
-			// 				);',
-			// 			'type' => 'raw',
-			// 		),
-			// 	),
-			// ));
+			$this->widget('HarapanBaruGrid', array(
+				'id'=>'dynamic-table',
+				'dataProvider'=>$dataProvider,
+				'columns'=>array(
+					'no_pengadaan',
+					'tgl_pengadaan',
+					array(
+						'header' => 'Status Verifikasi',
+						'value' => function($data){
+								if($data->is_verifikasi == 0){
+
+									return "<span class='label label-default label-white middle'>Belum Verifikasi</span>";
+									}else{
+									return "<span class='label label-success label-white middle'>Telah Diverifikasi</span>";
+									}
+							},
+						'type'=>'html'
+					),
+					array(
+						'header'=>'Aksi',
+						'class' => 'CButtonColumn',
+						'template' => '<div class="btn-group">{detail}{ubah}{hapus}</div>',
+						'htmlOptions' => ['class'=>'col-sm-2'],
+						'buttons'=>array(
+							'detail'=>array(
+								'label' => 'Detail',
+								'url' => 'Yii::app()->createUrl("pengadaan/pengadaan/detail",array("id"=>$data->id_pengadaan))',
+								'options' => array(
+									'class' => 'btn btn-xs btn-default'
+								)
+							),
+							'ubah'=>array(
+								'label' => 'Ubah',
+								'url' => 'Yii::app()->createUrl("pengadaan/pengadaan/ubah",array("id"=>$data->id_pengadaan))',
+								'options' => array(
+									'class' => 'btn btn-xs btn-info'
+								)
+							),
+							'hapus'=>array(
+								'label' => 'Hapus',
+								'url' => 'Yii::app()->createUrl("pengadaan/pengadaan/hapus",array("id"=>$data->id_pengadaan))',
+								'options' => array(
+									'class' => 'btn btn-xs btn-danger',
+									'onclick'=>"return confirm('Apa anda yakin ingin menghapus item ini?');"
+								)
+							)
+						)
+					)
+				),
+			));
 			?>
 		</div>
 	</div>
 </div>
 <?php
-Yii::app()->clientScript->registerScript('list-pasien', '
+Yii::app()->clientScript->registerScript('list-pengadaan', '
 $(\'.tanggal\').datepicker({
 		format: "mm-yyyy",
 		viewMode: "months",

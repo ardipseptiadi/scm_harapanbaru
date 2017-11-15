@@ -26,3 +26,6 @@ $(".tgl_form").datepicker({
 Yii::app()->clientScript->registerScript('formPengadaanDetail',
 
 file_get_contents(__DIR__.'/pengadaan_cart.js'), CClientScript::POS_END);
+Yii::app()->clientScript->registerScript('formPengadaanPeramalan',
+
+file_get_contents(__DIR__.'/pengadaan_peramalan.js'), CClientScript::POS_END);

@@ -29,22 +29,39 @@
 	</div>
 
     <div class="form-group">
-        <div class="col-sm-10">
+				<label class="control-label col-sm-2">Pilih Part</label>
+        <div class="col-sm-8">
             <?php  echo CHtml::dropDownList('part', 'data_p',
                 $list_part,
                 array('empty' => '(Pilih Part)',
-                                'class' => 'span2'
+                                'class' => 'form-control'
                     )); ?>
-			<?php echo CHtml::numberField('qty', '',
-                array('id'=>'qty',
-                        'class'=>'span2',
-                'width'=>11,
-                'maxlength'=>11,
-                        'placeholder'=>'Quantity',
-                    )); ?>
-			<?php echo CHtml::button('Tambah', array('class' => 'addCart')); ?>
+
+
         </div>
     </div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-2">&nbsp;</label>
+			<label class="control-label col-sm-2">Peramalan</label>
+			<div class="col-sm-3">
+				<?php echo CHtml::textField('ramal','',['id'=>'ramal','class'=>'form-control','readonly'=>true]) ?>
+			</div>
+			<div class="col-sm-3">
+				<?php echo CHtml::numberField('qty', '',
+	                array('id'=>'qty',
+	                        'class'=>'form-control',
+	                'width'=>11,
+	                'maxlength'=>11,
+	                        'placeholder'=>'Quantity',
+	                    )); ?>
+			</div>
+			<div class="col-sm-2">
+<?php echo CHtml::button('Tambah', array('class' => 'addCart')); ?>
+			</div>
+		</div>
+
+		<p id="add_cart_info"></p>
 
     <div>
 		<?php

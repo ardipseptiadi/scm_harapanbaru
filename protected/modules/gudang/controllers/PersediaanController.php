@@ -10,7 +10,7 @@ class PersediaanController extends Controller
 				'pageSize' =>20,
 			),
 		));
-		
+
 		$this->render('index',get_defined_vars());
 	}
 
@@ -18,6 +18,21 @@ class PersediaanController extends Controller
 	{
 		$model = new PartStock;
 		$this->render('create',get_defined_vars());
+	}
+
+	public function actionTambah($id)
+	{
+		$model = PartStock::model()->findByPk($id);
+
+		if(isset($_POST[get_class($model)])){
+			$model->qty_in_hand = $model->qty_in_hand + $_POST[get_class($model)]['added_qty'];
+			$model->last_update = date('Y-m-d h:i:s');
+			if($model->update()){
+				$this->redirect(['index']);
+			}
+		}
+
+		$this->render('tambah',get_defined_vars());
 	}
 
 	// Uncomment the following methods and override them if needed

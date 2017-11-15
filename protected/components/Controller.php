@@ -32,19 +32,30 @@ class Controller extends CController
 
 	protected function generateMenu()
 	{
-		$group = GroupUser::model()->findByAttributes(['username'=>Yii::app()->user->name]);
+		$groups = GroupUser::model()->findAllByAttributes(['username'=>Yii::app()->user->name]);
+		$listMenu = [];
+		foreach ($groups as $group) {
+			$tempMenu = $this->generateListItem($group);
+			$listMenu = array_merge($listMenu,$tempMenu);
+		}
+
+		return $listMenu;
+	}
+
+	protected function generateListItem($group)
+	{
 		$groupMenuParent = MenuGroup::model()
 									->with('idMenu')
 									->findAllByAttributes(
 											['group_user'=>$group->group_id],
-											['condition'=>'idMenu.parent IS NULL']
+											['condition'=>'idMenu.parent IS NULL AND idMenu.is_active = 1']
 										);
 		foreach ($groupMenuParent as $value) {
 			$groupMenuChild = MenuGroup::model()
 										->with('idMenu')
 										->findAllByAttributes(
 												['group_user'=>$group->group_id],
-												['condition'=>'idMenu.parent IS NOT NULL AND idMenu.parent = :menu',
+												['condition'=>'idMenu.parent IS NOT NULL AND idMenu.is_active = 1 AND idMenu.parent = :menu',
 													'params' => [':menu'=>$value->id_menu]
 												]
 											);

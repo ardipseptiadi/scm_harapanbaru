@@ -48,7 +48,9 @@ class PengadaanDetail extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
+		Yii::import('application.modules.admin.models.*');
 		return array(
+			'idPart' => array(self::BELONGS_TO,'Part','id_part')
 		);
 	}
 

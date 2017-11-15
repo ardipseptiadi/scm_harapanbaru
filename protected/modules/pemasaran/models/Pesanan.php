@@ -133,7 +133,6 @@ class Pesanan extends CActiveRecord
 		$criteria->limit="1";
 
 		return $this->find($criteria);
-
 	}
 
 	public function generatePembayaran()

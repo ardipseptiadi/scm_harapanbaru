@@ -1,14 +1,14 @@
 <div class="row">
 	<div class="col-xs-12">
-		<h3 class="header smaller lighter blue">Detail Pesanan</h3>
+		<h3 class="header smaller lighter blue">Detail Pengadaan</h3>
 		<div class="button-groups">
-			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('pemasaran/pemesanan/index'); ?>">Kembali</a>
+			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('pengadaan/pengadaan/index'); ?>">Kembali</a>
 		</div>
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>
 		</div>
 		<div class="table-header">
-			Data Detail Pesanan <?=$id?>
+			Data Detail Pengadaan <?=$id?>
 		</div>
 		<div>
 			<?php
@@ -20,7 +20,7 @@
                         'header'=>'Part',
                         'value'=>'$data->idPart->nama_part'
                     ),
-                    'qty'
+                    'qty_pengadaan'
                 )
 			));
 			?>

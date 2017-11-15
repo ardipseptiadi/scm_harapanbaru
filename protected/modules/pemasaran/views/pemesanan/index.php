@@ -69,7 +69,8 @@ $this->breadcrumbs=array(
 								'label' => 'Hapus',
 								'url' => 'Yii::app()->createUrl("pemasaran/pemesanan/hapus",array("id"=>$data->id_pesanan))',
 								'options' => array(
-									'class' => 'btn btn-xs btn-danger'
+									'class' => 'btn btn-xs btn-danger',
+									'onclick'=>"return confirm('Apa anda yakin ingin menghapus item ini?');"
 								)
 							)
 						)

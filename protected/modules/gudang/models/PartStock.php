@@ -15,6 +15,7 @@ Yii::import('application.modules.admin.models.*');
 class PartStock extends CActiveRecord
 {
 	public $part_name;
+	public $added_qty;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -62,6 +63,7 @@ class PartStock extends CActiveRecord
 			'qty_in_hand' => 'Qty In Hand',
 			'last_update' => 'Last Update',
 			'updated_by' => 'Updated By',
+			'added_qty' => 'Jumlah yang ditambahkan'
 		);
 	}
 

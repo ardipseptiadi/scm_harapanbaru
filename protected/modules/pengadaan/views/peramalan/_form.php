@@ -13,24 +13,24 @@
 	<?php echo $form->errorSummary($model); ?>
 
   <div class="form-group">
-		<?php echo $form->labelEx($model,'bln_ramal',['class'=>'col-sm-2 control-label']); ?>
-		<div class="col-sm-10">
-			<?php echo $form->textField($model,'bln_ramal',array('size'=>50,'maxlength'=>50,'class'=>'bln_form')); ?>
+		<?php echo $form->labelEx($model,'Bulan Peramalan',['class'=>'col-sm-5 control-label']); ?>
+		<div class="col-sm-4">
+			<?php echo $form->textField($model,'bln_ramal',array('size'=>14,'maxlength'=>14,'class'=>'bln_form')); ?>
 		</div>
 		<?php echo $form->error($model,'bln_ramal'); ?>
 	</div>
 
   <div class="form-group">
-		<?php echo $form->labelEx($model,'bln_data',['class'=>'col-sm-2 control-label']); ?>
-		<div class="col-sm-10">
-			<?php echo $form->textField($model,'bln_data',array('size'=>50,'maxlength'=>50,'class'=>'bln_form')); ?>
+		<?php echo $form->labelEx($model,'Data diambil dari bulan',['class'=>'col-sm-5 control-label']); ?>
+		<div class="col-sm-4">
+			<?php echo $form->textField($model,'bln_data',array('size'=>14,'maxlength'=>14,'class'=>'bln_form')); ?>
 		</div>
 		<?php echo $form->error($model,'bln_data'); ?>
 	</div>
 
   <div class="form-group">
-    <?php echo $form->labelEx($model,'id_part',['class'=>'col-sm-2 control-label']); ?>
-    <div class="col-sm-10">
+    <?php echo $form->labelEx($model,'id_part',['class'=>'col-sm-5 control-label']); ?>
+    <div class="col-sm-4">
       <?php echo $form->dropDownList($model,'id_part',$list_part,['empty'=>'Pilih']); ?>
     </div>
     <?php echo $form->error($model,'id_part'); ?>

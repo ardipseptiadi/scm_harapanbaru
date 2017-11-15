@@ -120,4 +120,20 @@ class Peramalan extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getDataPesananBulan($date,$id)
+	{
+		$start = $date.'-01';
+	  $end = $date.'-31';
+		$query = "
+            SELECT SUM(psd.qty) AS sum_pesanan
+            FROM hb_pesanan_detail psd
+            LEFT JOIN hb_pesanan psn ON psn.id_pesanan = psd.id_pesanan
+            WHERE psn.tgl_pesan BETWEEN '".$start."' AND '".$end."'
+            AND psd.id_part = '{$id}'
+              ";
+		$command = Yii::app()->db->createCommand($query);
+		$data = $command->queryRow();
+		return $data['sum_pesanan'];
+	}
 }

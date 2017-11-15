@@ -13,17 +13,21 @@ $(document).on('click', ".addCart", function () {
             qty: qty,
         },
         url: window.location.origin + '/pengadaan/pengadaan/addCart',
-        complete:  function(response){
-          console.log(response);
-    //         // btnAdd.prop('disabled', true);//komen dulu karena pengen bisa add tindakan lebih dari satu kalii
-    //         // setTimeout(function(){}, 1000);
-    //         // total += parseFloat(tarif);// * qty;
-    //         // $('.sum-total').text(total);
-              $.fn.yiiGridView.update('cart-grid', {
-                    complete: function(jqXHR, status) {
-                        console.log(status);
-                    }
-                });
+        beforeSend: function(){
+          $('#add_cart_info').html("");
+        },
+        success:  function(response){
+          if(response.status){
+              $('#add_cart_info').html("berhasil ditambahkan").attr('class','text-success');
+          }else{
+            var newHtml = response.responseText;
+            $('#add_cart_info').html(newHtml).attr('class','text-danger');
+          }
+          $.fn.yiiGridView.update('cart-grid', {
+                complete: function(jqXHR, status) {
+                    console.log(status);
+                }
+            });
               // $('#cart-grid').yiiGridView('update');
         }
     });

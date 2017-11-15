@@ -37,7 +37,7 @@ class PartController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('admin','superadmin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -82,7 +82,7 @@ class PartController extends Controller
 			$model->stok_awal = $_POST['stok_awal'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_part));
-			
+
 		}
 
 		$this->render('create',get_defined_vars());
@@ -119,7 +119,9 @@ class PartController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+		$model->is_deleted = 1;
+		$model->update();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
