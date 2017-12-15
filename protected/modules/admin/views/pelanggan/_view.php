@@ -21,5 +21,9 @@
 	<?php echo CHtml::encode($data->alamat); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('no_telepon')); ?>:</b>
+	<?php echo CHtml::encode($data->no_telepon); ?>
+	<br />
+
 
 </div>

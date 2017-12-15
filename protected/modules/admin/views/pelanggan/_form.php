@@ -42,6 +42,14 @@
 		<?php echo $form->error($model,'alamat'); ?>
 	</div>
 
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'no_telepon',['class'=>'col-sm-2 control-label']); ?>
+		<div class="col-sm-10">
+			<?php echo $form->textField($model,'no_telepon',array('size'=>15,'maxlength'=>15)); ?>
+		</div>
+		<?php echo $form->error($model,'no_telepon'); ?>
+	</div>
+
 	<div class="form-actions center">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>
 	</div>

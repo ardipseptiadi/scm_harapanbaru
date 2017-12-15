@@ -91,7 +91,8 @@ class PelangganController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+		$kota=Kota::model()->findAll();
+		$list_kota=CHtml::listData($kota,'id_kota','nama');
 		if(isset($_POST['Pelanggan']))
 		{
 			$model->attributes=$_POST['Pelanggan'];
@@ -99,9 +100,7 @@ class PelangganController extends Controller
 				$this->redirect(array('view','id'=>$model->id_pelanggan));
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update',get_defined_vars());
 	}
 
 	/**

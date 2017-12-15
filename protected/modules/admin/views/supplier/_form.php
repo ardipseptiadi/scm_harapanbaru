@@ -43,6 +43,14 @@
 		<?php echo $form->error($model,'no_telpon'); ?>
 	</div>
 
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'kode_bank',['class'=>'col-sm-2 control-label']); ?>
+		<div class="col-sm-10">
+			<?php echo $form->textField($model,'kode_bank',array('size'=>5,'maxlength'=>5)); ?>
+		</div>
+		<?php echo $form->error($model,'kode_bank'); ?>
+	</div>
+
 	<div class="form-actions center">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>
 	</div>

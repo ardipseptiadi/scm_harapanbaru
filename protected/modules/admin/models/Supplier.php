@@ -29,10 +29,10 @@ class Supplier extends CActiveRecord
 		return array(
 			array('nama', 'required'),
 			array('nama, alamat', 'length', 'max'=>50),
-			array('no_telpon', 'length', 'max'=>15),
+			array('no_telpon,kode_bank', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_supplier, nama, alamat, no_telpon', 'safe', 'on'=>'search'),
+			array('id_supplier, nama, alamat, no_telpon, kode_bank', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,6 +57,7 @@ class Supplier extends CActiveRecord
 			'nama' => 'Nama',
 			'alamat' => 'Alamat',
 			'no_telpon' => 'No Telpon',
+			'kode_bank' => 'Kode Bank'
 		);
 	}
 

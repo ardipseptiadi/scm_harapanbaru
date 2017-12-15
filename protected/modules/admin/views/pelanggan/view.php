@@ -25,5 +25,6 @@ $this->menu=array(
 		'id_kota',
 		'nama',
 		'alamat',
+		'no_telepon'
 	),
 )); ?>

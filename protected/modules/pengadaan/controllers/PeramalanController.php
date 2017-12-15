@@ -28,6 +28,9 @@ class PeramalanController extends Controller
 
 			$data_pesanan=[];
 			$listbulan = $this->periodeBulan($bln_data,$date_end);
+			if(count($listbulan) == 1){
+				$this->redirect(['index']);
+			}
 			foreach ($listbulan as $value) {
 			  $get_data = Peramalan::model()->getDataPesananBulan($value,$id_part);
 			  if($get_data){

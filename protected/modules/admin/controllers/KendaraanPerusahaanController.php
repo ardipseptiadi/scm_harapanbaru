@@ -92,7 +92,10 @@ class KendaraanPerusahaanController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+		$jeniskendaraan = JenisKendaraanPerusahaan::model()->findAll();
+		$list_jenis_kendaraan = CHtml::listData($jeniskendaraan,'id_jenis_kendaraan','jenis');
+		$petugas = Petugas::model()->findAll();
+		$list_petugas = CHtml::listData($petugas,'id_petugas','nama');
 		if(isset($_POST['KendaraanPerusahaan']))
 		{
 			$model->attributes=$_POST['KendaraanPerusahaan'];
@@ -100,9 +103,7 @@ class KendaraanPerusahaanController extends Controller
 				$this->redirect(array('view','id'=>$model->id_kendaraan));
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update',get_defined_vars());
 	}
 
 	/**

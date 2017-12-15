@@ -15,12 +15,12 @@ $this->menu=array(
 <div class="row">
 	<div class="col-xs-12">
 		<h3 class="header smaller lighter blue">Part</h3>
-		
+
 		<div class="button-groups">
 			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('admin/part/create'); ?>">Tambah</a>
 			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('admin/part/admin'); ?>">Manage</a>
 		</div>
-		
+
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>
 		</div>
@@ -33,18 +33,18 @@ $this->menu=array(
 				'dataProvider'=>$dataProvider,
 				'columns'=>array(
 					'part_code',
-					array(
-						'name'=>'Parent Part'
-					),
-					array(
-						'name'=>'Part Brand'
-					),
-					array(
-						'name'=>'Part Level'
-					),
-					array(
-						'name'=>'Part Type'
-					),
+					// array(
+					// 	'name'=>'Parent Part'
+					// ),
+					// array(
+					// 	'name'=>'Part Brand'
+					// ),
+					// array(
+					// 	'name'=>'Part Level'
+					// ),
+					// array(
+					// 	'name'=>'Part Type'
+					// ),
 					'nama_part',
 					'berat',
 					'keterangan',

@@ -115,7 +115,7 @@ class PemesananController extends Controller
 				$id = count($data) +1;
 			}
 			$prd = Part::model()->findByPk($detail->id_part);
-			array_push($data,['id'=>$id,'id_part'=>$detail->id_part,'nama'=>$prd->nama_part,'qty'=>$detail->qty]);
+			array_push($data,['id'=>$id,'id_part'=>$detail->id_part,'nama'=>$prd->nama_part,'qty'=>$detail->qty,'harga'=>$detail->harga]);
 		}
 		if(!isset(Yii::app()->session['cart'])){
 			Yii::app()->session['cart'] = $data;
@@ -163,7 +163,7 @@ class PemesananController extends Controller
 			$id = count($data) +1;
 		}
 		$prd = Part::model()->findByPk($id_part);
-		array_push($data,['id'=>$id,'id_part'=>$id_part,'nama'=>$prd->nama_part,'qty'=>$qty]);
+		array_push($data,['id'=>$id,'id_part'=>$id_part,'nama'=>$prd->nama_part,'qty'=>$qty,'harga'=>$prd->harga]);
 		Yii::app()->session['cart'] = $data;
 
 	}

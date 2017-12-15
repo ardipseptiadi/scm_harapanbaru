@@ -80,6 +80,10 @@
 
     <div>
 		<?php
+			$total = 0;
+			foreach ($cart->rawData as $data_cart) {
+				$total += ($data_cart['qty']*$data_cart['harga']);
+			}
 			$this->widget('zii.widgets.grid.CGridView',array(
 					'id' => 'cart-grid',
 					'dataProvider' => $cart,
@@ -88,12 +92,26 @@
 						array(
 							'name' => 'Produk',
 							'type' => 'raw',
-							'value' => 'CHtml::encode($data["nama"])'
+							'value' => 'CHtml::encode($data["nama"])',
+							'footer'=>'Total'
 						),
 						array(
 							'name' => 'Qty',
 							'type' => 'raw',
 							'value' => 'CHtml::encode($data["qty"])'
+						),
+						array(
+							'name' => 'Harga',
+							'type' => 'raw',
+							'value' => 'CHtml::encode($data["harga"])'
+						),
+						array(
+							'name' => 'Subtotal',
+							'type' => 'raw',
+							'value' => function($data){
+								return $data['qty']*$data['harga'];
+								},
+							'footer'=> $total
 						),
 						array(
 							'header' => 'Aksi',

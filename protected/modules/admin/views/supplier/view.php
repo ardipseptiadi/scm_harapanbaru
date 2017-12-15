@@ -25,5 +25,6 @@ $this->menu=array(
 		'nama',
 		'alamat',
 		'no_telpon',
+		'kode_bank'
 	),
 )); ?>

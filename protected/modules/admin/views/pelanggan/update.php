@@ -18,4 +18,4 @@ $this->menu=array(
 
 <h1>Update Pelanggan <?php echo $model->id_pelanggan; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', get_defined_vars()); ?>

@@ -18,4 +18,4 @@ $this->menu=array(
 
 <h1>Update Kota <?php echo $model->id_kota; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', get_defined_vars()); ?>

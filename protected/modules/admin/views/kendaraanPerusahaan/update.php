@@ -18,4 +18,4 @@ $this->menu=array(
 
 <h1>Update KendaraanPerusahaan <?php echo $model->id_kendaraan; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', get_defined_vars()); ?>

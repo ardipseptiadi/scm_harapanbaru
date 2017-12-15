@@ -32,10 +32,10 @@ class Pelanggan extends CActiveRecord
 		return array(
 			array('id_kota, nama', 'required'),
 			array('id_kota', 'numerical', 'integerOnly'=>true),
-			array('nama, alamat', 'length', 'max'=>50),
+			array('nama, alamat,no_telepon', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_pelanggan, id_kota, nama, alamat', 'safe', 'on'=>'search'),
+			array('id_pelanggan, id_kota, nama, alamat,no_telepon', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +61,7 @@ class Pelanggan extends CActiveRecord
 			'id_kota' => 'Id Kota',
 			'nama' => 'Nama',
 			'alamat' => 'Alamat',
+			'no_telepon' => 'No Telepon'
 		);
 	}
 

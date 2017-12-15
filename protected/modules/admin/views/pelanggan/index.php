@@ -15,12 +15,12 @@ $this->menu=array(
 <div class="row">
 	<div class="col-xs-12">
 		<h3 class="header smaller lighter blue">Pelanggan</h3>
-		
+
 		<div class="button-groups">
 			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('admin/pelanggan/create'); ?>">Tambah</a>
 			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('admin/pelanggan/admin'); ?>">Manage</a>
 		</div>
-		
+
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>
 		</div>
@@ -34,6 +34,7 @@ $this->menu=array(
 				'columns'=>array(
 					'nama',
 					'alamat',
+					'no_telepon',
 					array(
 						'name'=>'Kota',
 						'value'=>'$data->idKota->nama'

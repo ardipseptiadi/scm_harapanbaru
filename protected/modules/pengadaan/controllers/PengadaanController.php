@@ -58,6 +58,60 @@ class PengadaanController extends Controller
 		$this->render('tambah',get_defined_vars());
 	}
 
+	public function actionUbah($id)
+	{
+		$model = Pengadaan::model()->findByPk($id);
+		$part = Part::model()->findAll(array('order' => 'nama_part'));
+    $list_part = CHtml::listData($part,'id_part', 'nama_part');
+
+		if(isset($_POST['Pengadaan'])){
+				$model->attributes = $_POST['Pengadaan'];
+				// $model->id_pembayaran = $model->generatePembayaran();
+				// $model->created_date = date('Y-m-d h:i:s');
+				if($model->update())
+				{
+					$p_detail_lama = PengadaanDetail::model()->findAllByAttributes(['id_pengadaan'=>$id]);
+					if($p_detail_lama){
+						foreach ($p_detail_lama as $detail_lama) {
+							$detail_lama->delete();
+						}
+					}
+					$data_detail = Yii::app()->session['cart'];
+					foreach($data_detail as $detail){
+						$p_detail = new PengadaanDetail();
+						$p_detail->id_pengadaan = $id;
+						$p_detail->id_part = $detail["id_part"];
+						$p_detail->qty_pengadaan = $detail["qty_pengadaan"];
+						$p_detail->created_at = date('Y-m-d h:i:s');
+						$p_detail->save();
+					}
+					unset(Yii::app()->session['cart']);
+					$this->redirect(array('index'));
+				}
+		}elseif(!isset($_GET['ajax'])){
+			unset(Yii::app()->session['cart']);
+		}
+		$data = [];
+		$psd_detail = PengadaanDetail::model()->findAllByAttributes(['id_pengadaan'=>$id,'is_deleted'=>0]);
+		foreach ($psd_detail as $detail) {
+			if(count($data)<1){
+				$id = 1;
+			}else{
+				$id = count($data) +1;
+			}
+			$prd = Part::model()->findByPk($detail->id_part);
+			array_push($data,['id'=>$id,'id_part'=>$detail->id_part,'nama'=>$prd->nama_part,'qty'=>$detail->qty_pengadaan,'harga'=>$prd->harga]);
+		}
+		if(!isset(Yii::app()->session['cart'])){
+			Yii::app()->session['cart'] = $data;
+		}
+		$dt =Yii::app()->session['cart'];
+		$cart = new CArrayDataProvider($dt,array(
+							'keyField'=>'id'
+						));
+		$this->render('ubah',get_defined_vars());
+	}
+
 	public function generateNoPengadaan()
 	{
 		$lastOrder = Pengadaan::model()->generateNoPengadaan();
@@ -88,7 +142,7 @@ class PengadaanController extends Controller
 			$id = count($data) +1;
 		}
 		$prd = Part::model()->findByPk($id_part);
-		array_push($data,['id'=>$id,'id_part'=>$id_part,'nama'=>$prd->nama_part,'qty'=>$qty]);
+		array_push($data,['id'=>$id,'id_part'=>$id_part,'nama'=>$prd->nama_part,'qty'=>$qty,'harga'=>$prd->harga]);
 		Yii::app()->session['cart'] = $data;
 		echo CJSON::encode(['responseText'=>'berhasil','status'=>true]);
 	}
