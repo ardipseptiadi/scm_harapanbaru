@@ -109,7 +109,8 @@ class RiwayatPersediaan extends CActiveRecord
 	{
 		$criteria = new CDbCriteria;
 		$criteria->select = "t.jumlah";
-		$criteria->addBetweenCondition("t.tgl_riwayat","2017-09-01","2017-09-30","AND");
+		$criteria->addCondition("MONTH(t.tgl_riwayat) = '{$bln}' AND YEAR(t.tgl_riwayat) = '{$thn}'");
+		// $criteria->addBetweenCondition("t.tgl_riwayat","2017-09-01","2017-09-30","AND");
 
 		$dataRiwayat = $this->findAll($criteria);
 		$sum = 0;

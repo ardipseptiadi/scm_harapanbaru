@@ -16,6 +16,7 @@ class PartStock extends CActiveRecord
 {
 	public $part_name;
 	public $added_qty;
+	public $qty_add;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -127,5 +128,25 @@ class PartStock extends CActiveRecord
 	public function status()
 	{
 		return 'aman';
+	}
+
+	public function beforeSave()
+	{
+	   if(parent::beforeSave())
+	   {
+	        $mRiwayat = new RiwayatPersediaan;
+					$mRiwayat->id_part = $this->id_part;
+					$mRiwayat->jumlah = $this->qty_add;
+					$mRiwayat->tgl_riwayat = date('Y-m-d');
+					$mRiwayat->created_at = date('Y-m-d h:i:s');
+					$mRiwayat->created_by = 'gudang';
+					if($mRiwayat->save()){
+						return true;
+					}else{
+						var_dump($mRiwayat->getErrors());exit;
+						return false;
+					}
+	   }
+	   return false;
 	}
 }

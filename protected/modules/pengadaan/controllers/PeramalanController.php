@@ -43,6 +43,7 @@ class PeramalanController extends Controller
 				$mPeramalan = new Peramalan;
 			  $peramalan = $this->sem_MSE($data_pesanan);
 				$mPeramalan->peramalan = $bln_ramal;
+				$mPeramalan->data_mulai = $bln_data;
 				$mPeramalan->hasil = $peramalan;
 				$mPeramalan->id_part = $id_part;
 			  if($mPeramalan->save()){
@@ -123,6 +124,38 @@ class PeramalanController extends Controller
 	  $cari =array_keys($jt,min($jt));
 	  $hasil= $ja[$cari[0]];
 	  return $hasil;
+	}
+
+	public function actionUpdate($id)
+	{
+		$mPeramalan = Peramalan::model()->findByPk($id);
+		$bulanramal = '01-'.$mPeramalan->peramalan;
+		$daten = new DateTime($bulanramal);
+		$daten->modify('-1 months');
+		$date_end = $daten->format('m-Y');
+
+		$data_pesanan=[];
+		$listbulan = $this->periodeBulan($mPeramalan->data_mulai,$date_end);
+		if(count($listbulan) == 1){
+			$this->redirect(['index']);
+		}
+		foreach ($listbulan as $value) {
+			$get_data = Peramalan::model()->getDataPesananBulan($value,$mPeramalan->id_part);
+			if($get_data){
+				$data_pesanan[] = (int)$get_data;
+			}else{
+				$data_pesanan[] = 0;
+			}
+		}
+		if(!empty($data_pesanan)){
+			$peramalan = $this->sem_MSE($data_pesanan);
+			$mPeramalan->hasil = $peramalan;
+			if($mPeramalan->update()){
+				$this->redirect(['index']);
+			}
+		}
+
+		$this->redirect(['index']);
 	}
 
 	// Uncomment the following methods and override them if needed

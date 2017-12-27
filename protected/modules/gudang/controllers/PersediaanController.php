@@ -25,9 +25,10 @@ class PersediaanController extends Controller
 		$model = PartStock::model()->findByPk($id);
 
 		if(isset($_POST[get_class($model)])){
-			$model->qty_in_hand = $model->qty_in_hand + $_POST[get_class($model)]['added_qty'];
+			$model->qty_add = $_POST[get_class($model)]['added_qty'];
+			$model->qty_in_hand = $model->qty_in_hand + $model->qty_add;
 			$model->last_update = date('Y-m-d h:i:s');
-			if($model->update()){
+			if($model->save()){
 				$this->redirect(['index']);
 			}
 		}

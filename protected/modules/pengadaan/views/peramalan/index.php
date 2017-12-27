@@ -52,10 +52,20 @@ $this->breadcrumbs=array(
 						'header'=>'Nama Part',
 						'name' => 'idPart.nama_part',
 					),
-					// array(
-					// 	'header'=>'Bulan Peramalan',
-					// 	'name'=>'peramalan',
-					// ),
+					array(
+						'header'=>'Bulan Peramalan',
+						'name'=>'peramalan',
+					),
+					array(
+						'header'=>'Periode Data',
+						'value' => function($data){
+								$bulanramal = '01-'.$data->peramalan;
+								$daten = new DateTime($bulanramal);
+								$daten->modify('-1 months');
+								$date_end = $daten->format('m-Y');
+								return $data->data_mulai.' - '.$date_end;
+							}
+					),
 					array(
 						'header' => 'Hasil',
 						'name' => 'hasil'
@@ -71,7 +81,7 @@ $this->breadcrumbs=array(
 							CHtml::link("Update",
 								array(
 									"peramalan/update",
-									"id"=>"$data->id_part"
+									"id"=>"$data->id_peramalan"
 								)
 							);',
 						'type' => 'raw',

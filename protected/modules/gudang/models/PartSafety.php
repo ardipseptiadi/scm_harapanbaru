@@ -105,7 +105,7 @@ class PartSafety extends CActiveRecord
 	{
 		$data = $this->findByAttributes(['bulan'=>ltrim($bln,'0'),'tahun'=>$thn,'id_part'=>$id]);
 		if(!$data)
-			$data = $this;
+			$data = new PartSafety;
 		$data->id_part = $id;
 		$data->bulan = $bln;
 		$data->tahun = $thn;
