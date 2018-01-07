@@ -25,7 +25,17 @@ class PengirimanController extends Controller
 
 	public function actionMonitoring()
 	{
-		$this->render('index');
+		$providerPesanan = new CActiveDataProvider('Pesanan',array(
+			'pagination' => array(
+				'pageSize' =>20,
+			),
+		));
+		$providerKiriman = new CActiveDataProvider('Pengiriman',array(
+			'pagination' => array(
+				'pageSize' =>20,
+			),
+		));
+		$this->render('monitoring',get_defined_vars());
 	}
 
 	public function actionGetDataPesanan($id)
@@ -45,6 +55,29 @@ class PengirimanController extends Controller
 													'no_pengiriman' => $this->generateNoPengiriman()
 												],
 									]);
+	}
+
+	public function actionGetFormPengiriman($id)
+	{
+		$mPesanan = Pesanan::model()->findByPk($id);
+		if(isset($_POST) && count($_POST)){
+			$mKiriman = new Pengiriman;
+			$mKiriman->tgl_kirim = $mPesanan->tgl_kirim;
+			$mKiriman->no_pengiriman = isset($_POST['no_kirim']) ?$_POST['no_kirim']:null;
+			$mKiriman->id_pesanan = $id;
+			$mKiriman->id_kendaraan = isset($_POST['listkendaraan'])?$_POST['listkendaraan']:null;
+			$mKiriman->tujuan = isset($_POST['tujuan']) ?$_POST['tujuan']:null;
+			$mKiriman->created_at = date('Y-m-d h:i:s');
+			$mKiriman->save();
+			$this->redirect(['index']);
+		}
+		$no_pesanan = $mPesanan->no_order;
+		$no_kiriman = $this->generateNoPengiriman();
+
+		$kendaraan = KendaraanPerusahaan::model()->findAll(array('order' => 'no_polisi'));
+    $list_kendaraan = CHtml::listData($kendaraan,'id_kendaraan', 'no_polisi');
+
+		$this->renderPartial('_form_kirim',get_defined_vars());
 	}
 
 	public function generateNoPengiriman()

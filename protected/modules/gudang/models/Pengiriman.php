@@ -1,4 +1,6 @@
 <?php
+Yii::import('application.modules.admin.models.*');
+Yii::import('application.modules.pemasaran.models.*');
 
 /**
  * This is the model class for table "hb_pengiriman".
@@ -50,6 +52,8 @@ class Pengiriman extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+				'idPesanan' => array(self::BELONGS_TO, 'Pesanan', 'id_pesanan'),
+				'idKendaraan' => array(self::BELONGS_TO, 'KendaraanPerusahaan', 'id_kendaraan'),
 		);
 	}
 
@@ -67,6 +71,8 @@ class Pengiriman extends CActiveRecord
 			'status_kirim' => 'Status Kirim',
 			'id_pesanan' => 'Id Pesanan',
 			'id_kendaraan' => 'Id Kendaraan',
+			'idPesanan.no_order' => 'No Pesanan',
+			'idKendaraan.no_polisi' => 'No Polisi'
 		);
 	}
 

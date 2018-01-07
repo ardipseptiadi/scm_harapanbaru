@@ -1,10 +1,21 @@
 <?php
+Yii::import('application.modules.pemasaran.models.*');
+Yii::import('application.modules.admin.models.*');
 
 class PemesananController extends Controller
 {
 	public function actionMonitoring()
 	{
-		$this->render('monitoring');
+		$dataProvider = new CActiveDataProvider('Pesanan',array(
+			'criteria' => array(
+				'condition'=>'is_deleted = 0',
+				'order'=>'created_date DESC',
+			),
+			'pagination' => array(
+				'pageSize' =>20,
+			),
+		));
+		$this->render('monitoring',get_defined_vars());
 	}
 
 	// Uncomment the following methods and override them if needed
