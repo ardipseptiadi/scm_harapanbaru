@@ -105,12 +105,11 @@ class RiwayatPersediaan extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public function getRiwayat($bln,$thn)
+	public function getRiwayat($bln,$thn,$id)
 	{
 		$criteria = new CDbCriteria;
 		$criteria->select = "t.jumlah";
-		$criteria->addCondition("MONTH(t.tgl_riwayat) = '{$bln}' AND YEAR(t.tgl_riwayat) = '{$thn}'");
-		// $criteria->addBetweenCondition("t.tgl_riwayat","2017-09-01","2017-09-30","AND");
+		$criteria->addCondition("t.id_part = '{$id}' AND t.jumlah<0 AND MONTH(t.tgl_riwayat) = '{$bln}' AND YEAR(t.tgl_riwayat) = '{$thn}'");
 
 		$dataRiwayat = $this->findAll($criteria);
 		$sum = 0;
@@ -118,5 +117,10 @@ class RiwayatPersediaan extends CActiveRecord
 			$sum += $value->jumlah;
 		}
 		return $sum;
+	}
+
+	public function afterSave()
+	{
+
 	}
 }

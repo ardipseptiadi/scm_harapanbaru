@@ -5,12 +5,20 @@ class PersediaanController extends Controller
 	public function actionIndex()
 	{
 		$model = new PartStock('search');
+		$model->date_safety = date('m-Y');
+		if(isset($_GET['PartStock']))
+		{
+			$model->date_safety = $_GET['PartStock']['date_safety'];
+			$dates = $model->date_safety;
+			$dates = explode('-',$dates);
+			$model->bulan_safety = $dates[0];
+			$model->tahun_safety = $dates[1];
+		}
 		$dataProvider = new CActiveDataProvider($model,array(
 			'pagination' => array(
 				'pageSize' =>20,
 			),
 		));
-
 		$this->render('index',get_defined_vars());
 	}
 
@@ -34,6 +42,12 @@ class PersediaanController extends Controller
 		}
 
 		$this->render('tambah',get_defined_vars());
+	}
+
+	public function actionUpdateAll()
+	{
+		$res = PartSafety::model()->hardUpdateSafety();
+		return 'oke';
 	}
 
 	// Uncomment the following methods and override them if needed

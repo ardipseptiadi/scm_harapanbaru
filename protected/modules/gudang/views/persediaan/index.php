@@ -21,23 +21,38 @@ $this->breadcrumbs=array(
 			Data Persediaan
 		</div>
 		<div>
-			<h3>Data Persediaan Bulan <?=date('F');?></h3>
+			<?php
+			if(isset($model->date_safety))
+			{
+				$tgla = explode('-',$model->date_safety);
+				$tglds = date('Y-m-d',strtotime('01-'.$tgla[0].'-'.$tgla[1]));
+			} ?>
+			<h3>Data Persediaan Bulan <?php echo date('F',strtotime($tglds));?></h3>
 
 			<?php $form=$this->beginWidget('CActiveForm', [
 			    'id'=>'my-form',
+					'method'=>'GET',
 					'htmlOptions'=>['class'=>'form-inline'],
-			    'enableAjaxValidation'=>true,
+			    // 'enableAjaxValidation'=>true,
 			    'clientOptions'=>[
 			        'validateOnSubmit'=>true
 			    ]
 			]); ?>
 			    <div class="form-group">
-			        <?php echo $form->labelEx($model,'part_name'); ?>
-			        <?php echo $form->textField($model,'part_name',['class'=>'tanggal']); ?>
-			        <?php echo $form->error($model,'part_name'); ?>
+			        <?php echo $form->labelEx($model,'date_safety'); ?>
+			        <?php echo $form->textField($model,'date_safety',['class'=>'tanggal']); ?>
+			        <?php echo $form->error($model,'date_safety'); ?>
 			    </div>
 			    <?php echo CHtml::submitButton('Cari'); ?>
 			<?php $this->endWidget(); ?>
+			<?php
+			echo CHtml::ajaxSubmitButton('Update Safety Stock',Yii::app()->createUrl('gudang/persediaan/updateAll'),
+			                    array(
+			                        'type'=>'GET',
+			                        // 'data'=> 'js:{"data1": val1, "data2": val2 }',
+			                        'success'=>'js:function(string){ alert("Berhasil");location.reload(); }'
+			                    ),array('class'=>'someCssClass',));
+			?>
 
 			<?php
 			$this->widget('HarapanBaruGrid', array(
@@ -83,7 +98,7 @@ Yii::app()->clientScript->registerScript('part_stock_jquery', '
 	$(\'.tanggal\').datepicker({
 		format:"mm-yyyy",
 		startView:1,
-		maxViewMode:1,
+		maxViewMode:2,
 		minViewMode:1,
 		autclose:true
 	})

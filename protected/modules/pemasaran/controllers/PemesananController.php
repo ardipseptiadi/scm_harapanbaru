@@ -51,6 +51,7 @@ class PemesananController extends Controller
 					$p_detail->id_part = $detail["id_part"];
 					// $p_detail->no_order = $p_order;
 					$p_detail->qty = $detail["qty"];
+					$p_detail->created_date = date('Y-m-d h:i:s');
 					$p_detail->save();
 				}
 				unset(Yii::app()->session['cart']);
@@ -115,7 +116,7 @@ class PemesananController extends Controller
 				$id = count($data) +1;
 			}
 			$prd = Part::model()->findByPk($detail->id_part);
-			array_push($data,['id'=>$id,'id_part'=>$detail->id_part,'nama'=>$prd->nama_part,'qty'=>$detail->qty,'harga'=>$detail->harga]);
+			array_push($data,['id'=>$id,'id_part'=>$detail->id_part,'nama'=>$prd->nama_part,'qty'=>$detail->qty,'harga'=>$prd->harga]);
 		}
 		if(!isset(Yii::app()->session['cart'])){
 			Yii::app()->session['cart'] = $data;

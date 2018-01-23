@@ -129,4 +129,18 @@ class Pengiriman extends CActiveRecord
 
 		return $this->find($criteria);
 	}
+
+	public function afterSave()
+	{
+		$mPesanan = Pesanan::model()->findByPk($this->id_pesanan);
+		foreach($mPesanan->idPesanDetail as $pesanan_detail){
+			$mRiwayat = new RiwayatPersediaan;
+			$mRiwayat->id_part = $pesanan_detail->id_part;
+			$mRiwayat->jumlah = -1 * ($pesanan_detail->qty);
+			$mRiwayat->tgl_riwayat = date('Y-m-d');
+			$mRiwayat->created_at = date('Y-m-d h:i:s');
+			$mRiwayat->created_by = 'gudang';
+			$mRiwayat->save();
+		}
+	}
 }

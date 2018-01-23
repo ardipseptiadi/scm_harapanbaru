@@ -19,13 +19,6 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'id_parent',['class'=>'col-sm-3 control-label']); ?>
-		<div class="col-sm-8">
-			<?php echo $form->dropDownList($model,'id_parent',$list_part,array('empty'=>'--parent--')); ?>
-		</div>
-		<?php echo $form->error($model,'id_parent'); ?>
-	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'id_brand',['class'=>'col-sm-3 control-label']); ?>
@@ -33,22 +26,6 @@
 			<?php echo $form->dropDownList($model,'id_brand',$list_brand,array('empty'=>'--brand--')); ?>
 		</div>
 		<?php echo $form->error($model,'id_brand'); ?>
-	</div>
-
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'id_part_level',['class'=>'col-sm-3 control-label']); ?>
-		<div class="col-sm-8">
-			<?php echo $form->dropDownList($model,'id_part_level',$list_level,array('empty'=>'--part level--')); ?>
-		</div>
-		<?php echo $form->error($model,'id_part_level'); ?>
-	</div>
-
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'id_part_type',['class'=>'col-sm-3 control-label']); ?>
-		<div class="col-sm-8">
-			<?php echo $form->dropDownList($model,'id_part_type',$list_type,array('empty'=>'--part type--')); ?>
-		</div>
-		<?php echo $form->error($model,'id_part_type'); ?>
 	</div>
 
 	<div class="form-group">

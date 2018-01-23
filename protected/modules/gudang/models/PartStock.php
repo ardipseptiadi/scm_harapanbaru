@@ -17,6 +17,9 @@ class PartStock extends CActiveRecord
 	public $part_name;
 	public $added_qty;
 	public $qty_add;
+	public $bulan_safety;
+	public $tahun_safety;
+	public $date_safety;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -38,7 +41,7 @@ class PartStock extends CActiveRecord
 			array('updated_by', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_part, qty_in_hand, last_update, updated_by', 'safe', 'on'=>'search'),
+			array('id_part, qty_in_hand, last_update, updated_by,bulan_safety,tahun_safety,date_safety', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -111,6 +114,14 @@ class PartStock extends CActiveRecord
 	{
 		$bln = date('m');
 		$thn = date('Y');
+		if(isset($_GET['PartStock']))
+		{
+			$this->date_safety = $_GET['PartStock']['date_safety'];
+			$dates = $this->date_safety;
+			$dates = explode('-',$dates);
+			$bln = $dates[0];
+			$thn = $dates[1];
+		}
 		$id = $this->id_part;
 		$jumlah = 0;
 		$mSafety = PartSafety::model()->findByAttributes(['bulan'=>ltrim($bln,'0'),'tahun'=>$thn,'id_part'=>$id]);
@@ -118,6 +129,8 @@ class PartStock extends CActiveRecord
 			$res = PartSafety::model()->updateSafety($bln,$thn,$id);
 			if(!$res){
 				$jumlah = 0;
+			}else{
+				$jumlah = $res;
 			}
 		}else{
 			$jumlah = $mSafety->jumlah;
@@ -127,7 +140,11 @@ class PartStock extends CActiveRecord
 
 	public function status()
 	{
-		return 'aman';
+		if($this->qty_in_hand > $this->safety_stock()){
+			return 'Aman';
+		}else{
+			return 'Tidak Aman';
+		}
 	}
 
 	public function beforeSave()

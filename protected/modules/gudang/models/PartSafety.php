@@ -109,10 +109,29 @@ class PartSafety extends CActiveRecord
 		$data->id_part = $id;
 		$data->bulan = $bln;
 		$data->tahun = $thn;
-		$data->jumlah = RiwayatPersediaan::model()->getRiwayat($bln,$thn);
+		$bln_sebelumnya = ($bln == '1')? 12 : $bln - 1;
+		$thn_sebelumnya = ($bln == '1')? ($thn-1) : $thn;
+		$jml_riwayat = RiwayatPersediaan::model()->getRiwayat($bln_sebelumnya,$thn_sebelumnya,$id);
+		$data->jumlah = $jml_riwayat * -1 * 3;
 		if($data->save()){
-			return true;
+			$data->jumlah;
 		}
 		return false;
+	}
+
+	public function hardUpdateSafety()
+	{
+		$datas = $this->findAll();
+		foreach ($datas as $data) {
+			$bln = $data->bulan;
+			$thn = $data->tahun;
+			$bln_sebelumnya = ($bln == '1')? 12 : $bln - 1;
+			$thn_sebelumnya = ($bln == '1')? ($thn-1) : $thn;
+			$id = $data->id_part;
+			$jml_riwayat = RiwayatPersediaan::model()->getRiwayat($bln_sebelumnya,$thn_sebelumnya,$id);
+			$data->jumlah = $jml_riwayat * -1 * 3;
+			$data->update();
+		}
+		return true;
 	}
 }

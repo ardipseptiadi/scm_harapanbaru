@@ -81,7 +81,7 @@ class PengadaanController extends Controller
 						$p_detail = new PengadaanDetail();
 						$p_detail->id_pengadaan = $id;
 						$p_detail->id_part = $detail["id_part"];
-						$p_detail->qty_pengadaan = $detail["qty_pengadaan"];
+						$p_detail->qty_pengadaan = $detail["qty"];
 						$p_detail->created_at = date('Y-m-d h:i:s');
 						$p_detail->save();
 					}
@@ -159,7 +159,11 @@ class PengadaanController extends Controller
 	public function actionGetPeramalan()
 	{
 		$id_part = $_POST['id_part'];
-		$peramalan = Peramalan::model()->findByAttributes(['id_part'=>$id_part]);
+		$criteria = new CDbCriteria;
+		$criteria->condition = "id_part = '$id_part' ";
+		$criteria->order = "peramalan";
+		// $peramalan = Peramalan::model()->findByAttributes(['id_part'=>$id_part]);
+		$peramalan = Peramalan::model()->find($criteria);
 		if($peramalan){
 			echo CJSON::encode(['responseText'=>'berhasil','status'=>true,'hasil'=>$peramalan->hasil]);
 		}else{

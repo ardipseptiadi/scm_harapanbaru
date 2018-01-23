@@ -2,6 +2,7 @@ $(document).on('click', ".addCart", function () {
   var part_atr = $('#part');
   var qty_atr = $('#qty');
   if((part_atr.val()) && (qty_atr.val())){
+    if(qty_atr.val() > 0){
     var id_part = part_atr.val();
     var qty = qty_atr.val();
     //
@@ -31,7 +32,7 @@ $(document).on('click', ".addCart", function () {
               // $('#cart-grid').yiiGridView('update');
         }
     });
-    // alert("oke");
+  }else{ alert("Quantity tidak boleh kurang dari sama dengan 0")}
   }else{
     alert("Produk harus dipilih & Quantity tidak boleh kosong");
   }

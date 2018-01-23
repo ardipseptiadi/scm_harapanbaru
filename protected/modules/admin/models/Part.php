@@ -41,7 +41,7 @@ class Part extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array(' id_brand, id_part_level, id_part_type, nama_part', 'required'),
+			array(' id_brand , nama_part,stok_awal', 'required'),
 			array('id_parent, id_brand, id_part_level, id_part_type, berat, hpp, harga', 'numerical', 'integerOnly'=>true),
 			array('part_code', 'length', 'max'=>15),
 			array('nama_part', 'length', 'max'=>50),
@@ -143,6 +143,7 @@ class Part extends CActiveRecord
 		$partStock = new PartStock;
 		$partStock->id_part = $this->id_part;
 		$partStock->qty_in_hand = $this->stok_awal;
+		$partStock->qty_add = $this->stok_awal;
 		$partStock->last_update = date('Y-m-d h:i:s');
 		$partStock->updated_by = Yii::app()->user->name;
 

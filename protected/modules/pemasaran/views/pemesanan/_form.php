@@ -71,6 +71,7 @@
                 array('id'=>'qty',
                         'class'=>'span2',
                 'width'=>11,
+								'min'=>1,
                 'maxlength'=>11,
                         'placeholder'=>'Quantity',
                     )); ?>

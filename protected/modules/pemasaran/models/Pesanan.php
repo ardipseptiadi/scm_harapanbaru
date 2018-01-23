@@ -57,6 +57,7 @@ class Pesanan extends CActiveRecord
 		return array(
 			'idPelanggan' => array(self::BELONGS_TO, 'Pelanggan', 'id_pelanggan'),
 			'idPembayaran' => array(self::BELONGS_TO, 'Pembayaran', 'id_pembayaran'),
+			'idPesanDetail' => array(self::HAS_MANY, 'PesananDetail', 'id_pesanan'),
 		);
 	}
 

@@ -7,12 +7,7 @@ $this->breadcrumbs=array(
 ?>
 <div class="row">
 	<div class="col-xs-12">
-		<h3 class="header smaller lighter blue">Pesanan</h3>
-
-		<div class="button-groups">
-			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('pemasaran/pemesanan/create'); ?>">Tambah</a>
-			<a class="btn btn-primary" style="display:none" href="<?php //echo Yii::app()->createUrl('admin/jabatan/admin'); ?>">Manage</a>
-		</div>
+		<h3 class="header smaller lighter blue">Verifikasi Pesanan</h3>
 
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>
@@ -48,29 +43,21 @@ $this->breadcrumbs=array(
 					array(
 						'header'=>'Aksi',
 						'class' => 'CButtonColumn',
-						'template' => '<div class="btn-group">{detail}{ubah}{hapus}</div>',
+						'template' => '<div class="btn-group">{detail}{ubah}</div>',
 						'htmlOptions' => ['class'=>'col-sm-2'],
 						'buttons'=>array(
 							'detail'=>array(
 								'label' => 'Detail',
-								'url' => 'Yii::app()->createUrl("pemasaran/pemesanan/detail",array("id"=>$data->id_pesanan))',
+								'url' => 'Yii::app()->createUrl("operasional/pesanan/detail",array("id"=>$data->id_pesanan))',
 								'options' => array(
 									'class' => 'btn btn-xs btn-default'
 								)
 							),
 							'ubah'=>array(
-								'label' => 'Ubah',
-								'url' => 'Yii::app()->createUrl("pemasaran/pemesanan/ubah",array("id"=>$data->id_pesanan))',
+								'label' => 'Verifikasi',
+								'url' => 'Yii::app()->createUrl("pemasaran/pemesanan/verifikasi",array("id"=>$data->id_pesanan))',
 								'options' => array(
 									'class' => 'btn btn-xs btn-info'
-								)
-							),
-							'hapus'=>array(
-								'label' => 'Hapus',
-								'url' => 'Yii::app()->createUrl("pemasaran/pemesanan/hapus",array("id"=>$data->id_pesanan))',
-								'options' => array(
-									'class' => 'btn btn-xs btn-danger',
-									'onclick'=>"return confirm('Apa anda yakin ingin menghapus item ini?');"
 								)
 							)
 						)
