@@ -7,12 +7,8 @@ $this->breadcrumbs=array(
 ?>
 <div class="row">
 	<div class="col-xs-12">
-		<h3 class="header smaller lighter blue">Pengadaan</h3>
+		<h3 class="header smaller lighter blue">Verifikasi Pengadaan</h3>
 
-		<div class="button-groups">
-			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('pengadaan/pengadaan/tambah'); ?>">Tambah</a>
-			<a class="btn btn-primary" style="display:none" href="<?php //echo Yii::app()->createUrl('admin/jabatan/admin'); ?>">Manage</a>
-		</div>
 
 		<div class="clearfix">
 			<div class="pull-right tableTools-container">
@@ -37,7 +33,7 @@ $this->breadcrumbs=array(
 		<div>
 			<?php
 			$this->widget('HarapanBaruGrid', array(
-				'id'=>'dynamic-table',
+				'id'=>'verif_grid_pengadaan',
 				'dataProvider'=>$dataProvider,
 				'columns'=>array(
 					'no_pengadaan',
@@ -57,31 +53,22 @@ $this->breadcrumbs=array(
 					array(
 						'header'=>'Aksi',
 						'class' => 'CButtonColumn',
-						'template' => '<div class="btn-group">{detail}{ubah}{hapus}</div>',
+						'template' => '<div class="btn-group">{detail}{verifikasi}</div>',
 						'htmlOptions' => ['class'=>'col-sm-2'],
 						'buttons'=>array(
 							'detail'=>array(
 								'label' => 'Detail',
-								'url' => 'Yii::app()->createUrl("pengadaan/pengadaan/detail",array("id"=>$data->id_pengadaan))',
+								'url' => 'Yii::app()->createUrl("operasional/pengadaan/detail",array("id"=>$data->id_pengadaan))',
 								'options' => array(
 									'class' => 'btn btn-xs btn-default'
 								)
 							),
-							'ubah'=>array(
-								'label' => 'Ubah',
-								'visible' => '$data->is_verifikasi == "0"',
-								'url' => 'Yii::app()->createUrl("pengadaan/pengadaan/ubah",array("id"=>$data->id_pengadaan))',
+              'verifikasi'=>array(
+								'label' => 'Verifikasi',
+                'visible' => '$data->is_verifikasi<1',
+								'url' => 'Yii::app()->createUrl("operasional/pengadaan/act",array("id"=>$data->id_pengadaan))',
 								'options' => array(
-									'class' => 'btn btn-xs btn-info'
-								)
-							),
-							'hapus'=>array(
-								'label' => 'Hapus',
-								'visible' => '$data->is_verifikasi == "0"',
-								'url' => 'Yii::app()->createUrl("pengadaan/pengadaan/hapus",array("id"=>$data->id_pengadaan))',
-								'options' => array(
-									'class' => 'btn btn-xs btn-danger',
-									'onclick'=>"return confirm('Apa anda yakin ingin menghapus item ini?');"
+									'class' => 'btn btn-xs btn-info verif'
 								)
 							)
 						)
@@ -100,6 +87,18 @@ $(\'.tanggal\').datepicker({
 		minViewMode: "months"
 }).on(\'changeDate\', function (ev) {
 		 $(\'.datepicker\').hide();
+});
+
+jQuery(\'#verif_grid_pengadaan a.verif\').live(\'click\',function() {
+        if(!confirm(\'Anda yakin akan Diverifikasi?\')) return false;
+
+        var url = $(this).attr(\'href\');
+        //  do your post request here
+        $.post(url,function(res){
+             alert(res);
+						 location.reload();
+         });
+        return false;
 });
 
 ', CClientScript::POS_END);

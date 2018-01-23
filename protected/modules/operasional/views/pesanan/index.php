@@ -18,7 +18,7 @@ $this->breadcrumbs=array(
 		<div>
 			<?php
 			$this->widget('HarapanBaruGrid', array(
-				'id'=>'dynamic-table',
+				'id'=>'verif_grid',
 				'dataProvider'=>$dataProvider,
 				'columns'=>array(
 					'no_order',
@@ -55,9 +55,10 @@ $this->breadcrumbs=array(
 							),
 							'ubah'=>array(
 								'label' => 'Verifikasi',
-								'url' => 'Yii::app()->createUrl("pemasaran/pemesanan/verifikasi",array("id"=>$data->id_pesanan))',
+                'visible' => '$data->is_verifikasi<1',
+								'url' => 'Yii::app()->createUrl("operasional/pesanan/act",array("id"=>$data->id_pesanan))',
 								'options' => array(
-									'class' => 'btn btn-xs btn-info'
+									'class' => 'btn btn-xs btn-info verif'
 								)
 							)
 						)
@@ -68,3 +69,18 @@ $this->breadcrumbs=array(
 		</div>
 	</div>
 </div>
+<?php
+Yii::app()->clientScript->registerScript('verified', "
+jQuery('#verif_grid a.verif').live('click',function() {
+        if(!confirm('Anda yakin akan Diverifikasi?')) return false;
+
+        var url = $(this).attr('href');
+        //  do your post request here
+        $.post(url,function(res){
+             alert(res);
+						 location.reload();
+         });
+        return false;
+});
+
+");

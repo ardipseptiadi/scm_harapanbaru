@@ -27,7 +27,7 @@ $this->breadcrumbs=array(
 				$tgla = explode('-',$model->date_safety);
 				$tglds = date('Y-m-d',strtotime('01-'.$tgla[0].'-'.$tgla[1]));
 			} ?>
-			<h3>Data Persediaan Bulan <?php echo $this->changeBulan(date('F',strtotime($tglds)));?></h3>
+			<h3>Data Persediaan Bulan <?php echo date('F',strtotime($tglds));?></h3>
 
 			<?php $form=$this->beginWidget('CActiveForm', [
 			    'id'=>'my-form',
@@ -74,19 +74,7 @@ $this->breadcrumbs=array(
 					array(
 						'header' => 'Status',
 						'value' => '$data->status()'
-					),
-					array(
-						'header'=>'Aksi',
-						'name'=>'aksi',
-						'value' => '
-							CHtml::link("Tambah",
-								array(
-									"persediaan/tambah",
-									"id"=>"$data->id_part"
-								)
-							);',
-						'type' => 'raw',
-					),
+					)
 				),
 			));
 			?>

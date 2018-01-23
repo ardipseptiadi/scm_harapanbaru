@@ -130,7 +130,7 @@ class Pesanan extends CActiveRecord
 		$criteria = new CDbCriteria();
 		$criteria->select= "t.no_order";
 		$criteria->condition= "t.no_order IS NOT NULL AND t.no_order != ''";
-		$criteria->order = "t.created_date DESC";
+		$criteria->order = "t.id_pesanan DESC";
 		$criteria->limit="1";
 
 		return $this->find($criteria);

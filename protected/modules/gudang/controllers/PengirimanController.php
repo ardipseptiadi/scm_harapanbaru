@@ -69,6 +69,9 @@ class PengirimanController extends Controller
 			$mKiriman->tujuan = isset($_POST['tujuan']) ?$_POST['tujuan']:null;
 			$mKiriman->created_at = date('Y-m-d h:i:s');
 			$mKiriman->save();
+
+			$mPesanan->is_verifikasi = 2;
+			$mPesanan->update();
 			$this->redirect(['index']);
 		}
 		$no_pesanan = $mPesanan->no_order;

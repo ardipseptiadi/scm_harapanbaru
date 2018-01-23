@@ -60,6 +60,7 @@ $this->breadcrumbs=array(
 							),
 							'ubah'=>array(
 								'label' => 'Ubah',
+								'visible' => '$data->is_verifikasi == "0"',
 								'url' => 'Yii::app()->createUrl("pemasaran/pemesanan/ubah",array("id"=>$data->id_pesanan))',
 								'options' => array(
 									'class' => 'btn btn-xs btn-info'
@@ -67,6 +68,7 @@ $this->breadcrumbs=array(
 							),
 							'hapus'=>array(
 								'label' => 'Hapus',
+								'visible' => '$data->is_verifikasi == "0"',
 								'url' => 'Yii::app()->createUrl("pemasaran/pemesanan/hapus",array("id"=>$data->id_pesanan))',
 								'options' => array(
 									'class' => 'btn btn-xs btn-danger',

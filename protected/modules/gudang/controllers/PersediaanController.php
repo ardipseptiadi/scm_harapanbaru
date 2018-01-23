@@ -50,6 +50,55 @@ class PersediaanController extends Controller
 		return 'oke';
 	}
 
+	public function changeBulan($month)
+	{
+		$changedMonth = '';
+		$bln = date('m',strtotime($month));
+		switch ($bln) {
+			case '01':
+				$changedMonth = 'Januari';
+				break;
+			case '02':
+				$changedMonth = 'Februari';
+				break;
+			case '03':
+				$changedMonth = 'Maret';
+				break;
+			case '04':
+				$changedMonth = 'April';
+				break;
+			case '05':
+				$changedMonth = 'Mei';
+				break;
+			case '06':
+				$changedMonth = 'Juni';
+				break;
+			case '07':
+				$changedMonth = 'Juli';
+				break;
+			case '08':
+				$changedMonth = 'Agustus';
+				break;
+			case '09':
+				$changedMonth = 'September';
+				break;
+			case '10':
+				$changedMonth = 'Oktober';
+				break;
+			case '11':
+				$changedMonth = 'Nopember';
+				break;
+			case '12':
+				$changedMonth = 'Desember';
+				break;
+
+			default:
+				$changedMonth = 'Januari';
+				break;
+		}
+		return $changedMonth;
+	}
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

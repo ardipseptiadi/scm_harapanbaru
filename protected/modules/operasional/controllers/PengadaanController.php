@@ -1,19 +1,20 @@
 <?php
 
-class PesananController extends Controller
+class PengadaanController extends Controller
 {
 	public function init()
 	{
 		Yii::import('application.modules.admin.models.*');
-    Yii::import('application.modules.pemasaran.models.*');
+  	Yii::import('application.modules.pemasaran.models.*');
+    Yii::import('application.modules.pengadaan.models.*');
 	}
 
 	public function actionVerifikasi()
 	{
-		$dataProvider = new CActiveDataProvider('Pesanan',array(
+		$dataProvider = new CActiveDataProvider('Pengadaan',array(
 			'criteria' => array(
 				'condition'=>'is_deleted = 0',
-				'order'=>'created_date DESC',
+				'order'=>'created_at DESC',
 			),
 			'pagination' => array(
 				'pageSize' =>20,
@@ -22,21 +23,12 @@ class PesananController extends Controller
 		$this->render('index',get_defined_vars());
 	}
 
-	protected function performAjaxValidation($model)
+	public function actionDetail($id)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='pemesanan-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
-
-  public function actionDetail($id)
-	{
-		$dataProvider = new CActiveDataProvider('PesananDetail',array(
+		$dataProvider = new CActiveDataProvider('PengadaanDetail',array(
 			'criteria' => array(
-				'condition'=>"id_pesanan = {$id} AND is_deleted = 0",
-				'order'=>'created_date DESC',
+				'condition'=>"id_pengadaan = {$id} AND is_deleted = 0",
+				'order'=>'created_at DESC',
 			),
 			'pagination' => array(
 				'pageSize' =>20,
@@ -45,16 +37,17 @@ class PesananController extends Controller
 		$this->render('detail',get_defined_vars());
 	}
 
-	public function actionAct($id)
+  public function actionAct($id)
 	{
-		$pesanan = Pesanan::model()->findByPk($id);
-		$pesanan->is_verifikasi = 1;
-		if($pesanan->update()){
+		$pengadaan = Pengadaan::model()->findByPk($id);
+		$pengadaan->is_verifikasi = 1;
+		if($pengadaan->update()){
 			echo "Sukses";
 		}else {
 			echo "Terjadi Kesalahan";
 		}
 	}
+
 
 	// Uncomment the following methods and override them if needed
 	/*
