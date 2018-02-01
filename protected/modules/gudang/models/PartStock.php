@@ -151,6 +151,7 @@ class PartStock extends CActiveRecord
 	{
 	   if(parent::beforeSave())
 	   {
+			 if($this->isNewRecord){
 	        $mRiwayat = new RiwayatPersediaan;
 					$mRiwayat->id_part = $this->id_part;
 					$mRiwayat->jumlah = $this->qty_add;
@@ -163,6 +164,9 @@ class PartStock extends CActiveRecord
 						var_dump($mRiwayat->getErrors());exit;
 						return false;
 					}
+				}else{
+					return true;
+				}
 	   }
 	   return false;
 	}

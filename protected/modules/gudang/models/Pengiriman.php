@@ -137,10 +137,24 @@ class Pengiriman extends CActiveRecord
 			$mRiwayat = new RiwayatPersediaan;
 			$mRiwayat->id_part = $pesanan_detail->id_part;
 			$mRiwayat->jumlah = -1 * ($pesanan_detail->qty);
-			$mRiwayat->tgl_riwayat = date('Y-m-d');
+			$mRiwayat->tgl_riwayat = $mPesanan->tgl_pesan;
 			$mRiwayat->created_at = date('Y-m-d h:i:s');
 			$mRiwayat->created_by = 'gudang';
-			$mRiwayat->save();
+			if($mRiwayat->save()){
+
+				$mPartStock = PartStock::model()->findByPk($pesanan_detail->id_part);
+				$mPartStock->qty_in_hand = $mPartStock->qty_in_hand - $pesanan_detail->qty;
+				$mPartStock->last_update = date('Y-m-d h:i:s');
+				$mPartStock->updated_by = 'gudang';
+				if($mPartStock->update()){
+					return true;
+				}else{
+					var_dump('he');exit;
+					var_dump($mPartStock->getErrors());exit;
+				}
+			}else{
+				var_dump($mRiwayat->getErros());exit;
+			}
 		}
 	}
 }

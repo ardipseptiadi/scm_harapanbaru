@@ -33,6 +33,7 @@ $this->menu=array(
 				'dataProvider'=>$dataProvider,
 				'columns'=>array(
 					'part_code',
+					['header'=>'Stok Awal','name'=>'partStock.init_stock'],
 					// array(
 					// 	'name'=>'Parent Part'
 					// ),

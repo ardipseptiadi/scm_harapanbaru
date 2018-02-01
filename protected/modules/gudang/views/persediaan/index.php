@@ -64,6 +64,10 @@ $this->breadcrumbs=array(
 						'value'=>'$data->idPart->nama_part'
 					),
 					array(
+						'header'=>'Stok Awal',
+						'name'=>'init_stock',
+					),
+					array(
 						'header'=>'Sisa Stok',
 						'name'=>'qty_in_hand',
 					),
@@ -79,11 +83,8 @@ $this->breadcrumbs=array(
 						'header'=>'Aksi',
 						'name'=>'aksi',
 						'value' => '
-							CHtml::link("Tambah",
-								array(
-									"persediaan/tambah",
-									"id"=>"$data->id_part"
-								)
+							CHtml::link("Tambah",Yii::app()->createUrl(\'pengadaan/pengadaan/tambah\'),
+								["class"=>"btn btn-primary btn-xs"]
 							);',
 						'type' => 'raw',
 					),

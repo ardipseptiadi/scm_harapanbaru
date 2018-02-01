@@ -49,7 +49,7 @@ class Part extends CActiveRecord
 			array('keterangan', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_part, id_parent, id_brand, id_part_level, id_part_type, part_code, nama_part, berat, keterangan, satuan, hpp, harga', 'safe', 'on'=>'search'),
+			array('id_part, id_parent, id_brand, id_part_level, id_part_type, part_code, nama_part, berat, keterangan, satuan, hpp, harga,init_stock', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,13 +60,14 @@ class Part extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
+		// Yii::import('application.modules.gudang.models.*');
 		return array(
 			'idBrand' => array(self::BELONGS_TO, 'PartBrand', 'id_brand'),
 			'idPartLevel' => array(self::BELONGS_TO, 'PartLevel', 'id_part_level'),
 			'idPartType' => array(self::BELONGS_TO, 'PartType', 'id_part_type'),
 			'parentPart'=>array(self::BELONGS_TO, 'Part', 'id_parent'),
 			'childPart'=>array(self::HAS_MANY,'Part','id_parent'),
-			'partStock'=>array(self::BELONGS_TO, 'PartStock', 'id_parent'),
+			'partStock'=>array(self::BELONGS_TO, 'PartStock', 'id_part'),
 		);
 	}
 
@@ -88,6 +89,7 @@ class Part extends CActiveRecord
 			'satuan' => 'Satuan',
 			'hpp' => 'Hpp',
 			'harga' => 'Harga',
+			'init_stock' => 'Stok Awal'
 		);
 	}
 
@@ -142,6 +144,7 @@ class Part extends CActiveRecord
 	{
 		$partStock = new PartStock;
 		$partStock->id_part = $this->id_part;
+		$partStock->init_stock = $this->stok_awal;
 		$partStock->qty_in_hand = $this->stok_awal;
 		$partStock->qty_add = $this->stok_awal;
 		$partStock->last_update = date('Y-m-d h:i:s');

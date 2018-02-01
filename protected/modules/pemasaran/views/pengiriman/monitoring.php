@@ -13,89 +13,7 @@ $this->breadcrumbs=array(
 			<div class="pull-right tableTools-container"></div>
 		</div>
 		<div class="table-header">
-			Data Pesanan
-		</div>
-		<div>
-			<?php
-			$this->widget('HarapanBaruGrid', array(
-				'id'=>'dynamic-table-pesanan',
-				'dataProvider'=>$providerPesanan,
-				'ajaxUpdate'=>true,
-				'columns'=>array(
-					'no_order',
-					array(
-						'header'=>'Pelanggan',
-						'value'=>'$data->idPelanggan->nama'
-					),
-					'tgl_pesan',
-					'tgl_kirim',
-					array(
-						'header' => 'Status Verifikasi',
-						'value' => function($data){
-								if($data->is_verifikasi == 0){
-
-									return "<span class='label label-default label-white middle'>Belum Verifikasi</span>";
-									}else{
-									return "<span class='label label-success label-white middle'>Telah Diverifikasi</span>";
-									}
-							},
-						'type'=>'html'
-					),
-					array(
-						'header'=>'Aksi',
-						'class' => 'ButtonColumn',
-						'template' => '<div class="btn-group">{ubah}{dikirim}</div>',
-						'evaluateID'=>true,
-						'htmlOptions' => ['class'=>'col-sm-2'],
-						'buttons'=>array(
-							'ubah'=>array(
-								'label' => 'Siap Kirim',
-								'visible'=>'$data->is_verifikasi == "1"',
-								// 'url' => 'Yii::app()->createUrl("gudang/pengiriman/kirim",array("id"=>$data->id_pesanan))',
-								'options' => array(
-									'id'=> 'btnKirim',
-									'class' => 'btn btn-xs btn-info gridKirim',
-									'data-toggle'=>"modal",
-									'data-target'=>"#myModal",
-									'data-id'=>'$data->id_pesanan',
-									// 'data-href'=>getData?$data->id_pesanan'
-								)
-							),
-							'dikirim'=>array(
-								'label' => 'Telah Dikirim',
-								'visible'=>'$data->is_verifikasi == "2"',
-								// 'url'=>'#',
-								'options' => array(
-									'id'=> 'telahKirim',
-									'disabled'=>true,
-									'class' => 'btn btn-xs btn-success',
-								)
-							)
-						)
-					// 	'value' => '
-					// 		CHtml::link("Detail",
-					// 			array(
-					// 				"pemesanan/detail",
-					// 				"id"=>"$data->id_pesanan"
-					// 			),
-					// 			array(
-					// 				// "onclick"=>"js:removecartitem(".
-					// 				// 								$data["id"].",".
-					// 				// 								$data["id_part"].");",
-					// 				"class" => "btn btn-info btn-xs",
-					// 			)
-					// 		);',
-					// 	'type' => 'raw',
-					)
-				),
-			));
-			?>
-		</div>
-		<div class="clearfix">
-			<div class="pull-right tableTools-container"></div>
-		</div>
-		<div class="table-header">
-			Data Pengiriman
+			Monitoring Pengiriman
 		</div>
 		<div>
 			<?php
@@ -122,7 +40,7 @@ $this->breadcrumbs=array(
       </div>
       <div class="modal-body">
         <!-- <div id="prosesPengiriman"></div> -->
-				<!-- <form class="form form-horizontal" id="form-proses-kirim">
+				<form class="form form-horizontal" id="form-proses-kirim">
 					<div class="form-group">
 						<label class="control-label col-sm-2">No Pengiriman</label>
 						<div class="col-sm-4">
@@ -156,11 +74,11 @@ $this->breadcrumbs=array(
 							<input type="text" class="form-control" name="tujuan_kirim"/>
 						</div>
 					</div>
-				</form> -->
+				</form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-        <!-- <button type="submit" class="btn btn-primary" id="submitKirim">Kirim</button> -->
+        <button type="button" class="btn btn-primary" id="submitKirim">Kirim</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -174,17 +92,9 @@ Yii::app()->clientScript->registerScript('pengirimanPopup', '
 	    	autoclose:true,
 	    	format:"yyyy-mm-dd"
 	    });
-			$(\'.gridKirim\').on(\'click\',function(){
-				console.log("hello");
-					var dataId = $(this).attr("data-id");
-					console.log(dataId);
-					var dataURL = "/gudang/pengiriman/getFormPengiriman?id="+dataId;
-			    $(\'.modal-body\').load(dataURL,function(){
-			        $(\'#myModal\').modal({show:true});
-			    });
-			});
-			$(\'#e\').click(function(){
+			$(\'#btnKirim\').click(function(){
 				var val = $(this).data("id");
+				// var html_pop = $(\'#prosesPengiriman\');
 				$.ajax({
 					type: \'GET\',
 					dataType: \'JSON\',
@@ -206,10 +116,10 @@ Yii::app()->clientScript->registerScript('pengirimanPopup', '
 				});
 	    });
 
-			// $(\'#submitKirim\').click(function(){
-			// 	var dataform = $(\'#form-proses-kirim\').serialize();
-			// 	console.log(dataform);
-			// });
+			$(\'#submitKirim\').click(function(){
+				var dataform = $(\'#form-proses-kirim\').serialize();
+				console.log(dataform);
+			});
 		});
 ');
  ?>

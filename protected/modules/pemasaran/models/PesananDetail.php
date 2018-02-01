@@ -123,4 +123,9 @@ class PesananDetail extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function afterSave()
+	{
+		// $mRi
+	}
 }

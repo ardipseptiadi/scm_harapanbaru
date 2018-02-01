@@ -12,6 +12,10 @@
 		</div>
 		<div>
 			<?php
+			$total = 0;
+			foreach ($dataProvider->getData() as $m) {
+				$total += $m->idPart->harga *$m->qty;
+			}
 			$this->widget('HarapanBaruGrid', array(
 				'id'=>'dynamic-table',
 				'dataProvider'=>$dataProvider,
@@ -20,7 +24,17 @@
                         'header'=>'Part',
                         'value'=>'$data->idPart->nama_part'
                     ),
-                    'qty'
+                    'qty',
+										array(
+											'header' => 'Harga',
+											'value' => '$data->idPart->harga',
+											'footer'=>'Total'
+										),
+										array(
+											'header' => 'Subtotal',
+											'value'=> '$data->idPart->harga * $data->qty',
+											'footer'=>"Rp. ".number_format($total,0,".",".")
+										)
                 )
 			));
 			?>

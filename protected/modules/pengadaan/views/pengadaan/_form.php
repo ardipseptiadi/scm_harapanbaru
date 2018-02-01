@@ -90,6 +90,15 @@
 							'value' => 'CHtml::encode($data["harga"])'
 						),
 						array(
+							'name' => 'Supplier',
+							'type' => 'raw',
+							'value'=> ' CHtml::dropDownList(\'someName\',"",
+		             array(\'1\'=>\'Supplier 1\',
+		                        \'2\'=>\'Supplier 2\',
+		                        \'We\'=>\'Supplier 3\')
+		              )',
+						),
+						array(
 							'name' => 'Subtotal',
 							'type' => 'raw',
 							'value' => function($data){

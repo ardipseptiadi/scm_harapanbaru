@@ -118,9 +118,4 @@ class RiwayatPersediaan extends CActiveRecord
 		}
 		return $sum;
 	}
-
-	public function afterSave()
-	{
-
-	}
 }

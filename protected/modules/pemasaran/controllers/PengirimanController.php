@@ -5,7 +5,7 @@ class PengirimanController extends Controller
 	public function init()
 	{
 		Yii::import('application.modules.admin.models.*');
-		Yii::import('application.modules.pemasaran.models.*');
+		Yii::import('application.modules.gudang.models.*');
 	}
 
 	public function actionIndex()
