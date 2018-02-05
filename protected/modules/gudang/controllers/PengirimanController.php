@@ -11,6 +11,9 @@ class PengirimanController extends Controller
 	public function actionIndex()
 	{
 		$providerPesanan = new CActiveDataProvider('Pesanan',array(
+			'criteria' => array(
+				'condition'=>'t.is_deleted = 0'
+			),
 			'pagination' => array(
 				'pageSize' =>20,
 			),
@@ -76,6 +79,10 @@ class PengirimanController extends Controller
 		}
 		$no_pesanan = $mPesanan->no_order;
 		$no_kiriman = $this->generateNoPengiriman();
+
+		$mPelanggan = Pelanggan::model()->findByPk($mPesanan->id_pelanggan);
+		$tujuan = $mPelanggan->alamat;
+		$jarak = $mPelanggan->jarak;
 
 		$kendaraan = KendaraanPerusahaan::model()->findAll(array('order' => 'no_polisi'));
     $list_kendaraan = CHtml::listData($kendaraan,'id_kendaraan', 'no_polisi');

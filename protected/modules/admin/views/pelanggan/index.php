@@ -39,6 +39,7 @@ $this->menu=array(
 						'name'=>'Kota',
 						'value'=>'$data->idKota->nama'
 					),
+					'jarak'
 				),
 			)); ?>
 		</div>

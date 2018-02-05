@@ -3,7 +3,15 @@
 /* @var $model Pelanggan */
 /* @var $form CActiveForm */
 ?>
-
+<style>
+#map_canvas {
+    width: 500px;
+    height: 400px;
+}
+#current {
+    padding-top: 25px;
+}
+</style>
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'pelanggan-form',
 	'htmlOptions'=>array('class'=>'form-horizontal'),
@@ -49,9 +57,36 @@
 		</div>
 		<?php echo $form->error($model,'no_telepon'); ?>
 	</div>
+	<!-- <iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAXIhwmOj0_F84TgWQrdpJQVdEjLwWEPC0&origin=Oslo+Norway&destination=Telemark+Norway&avoid=tolls|highways" allowfullscreen>
+</iframe> -->
+<section>
+        <div id='map_canvas'></div>
+        <div id="current"></div>
+    </section>
+
+		<div class="form-group">
+			<?php echo $form->labelEx($model,'jarak',['class'=>'col-sm-4 control-label']); ?>
+			<div class="col-sm-8">
+				<?php echo $form->numberField($model,'jarak',array('size'=>15,'maxlength'=>15,'readonly'=>true)); ?>
+			</div>
+			<?php echo $form->error($model,'jarak'); ?>
+		</div>
 
 	<div class="form-actions center">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
+
+<?php
+Yii::app()->clientScript->registerScript(
+        'get_maps',
+        file_get_contents(__DIR__ . '/maps_google.js'),
+        CClientScript::POS_END
+    );
+Yii::app()->clientScript->registerScriptFile('http://maps.google.com/maps/api/js?key=AIzaSyCFxGrC6Gyb0AlOjbt2ciN2x6VWK8Vtrq4&sensor=false&.js', CClientScript::POS_END);
+ ?>

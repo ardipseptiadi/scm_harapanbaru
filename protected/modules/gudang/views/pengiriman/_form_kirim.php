@@ -14,7 +14,13 @@
   <div class="form-group">
     <label class="control-label col-sm-2">Tujuan</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" name="tujuan" />
+      <input type="text" class="form-control" name="tujuan" readonly value="<?=@$tujuan?>" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2">Jarak</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" name="jarak" readonly value="<?=@$jarak?> meter" />
     </div>
   </div>
   <div class="form-group">

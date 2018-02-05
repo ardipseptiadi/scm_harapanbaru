@@ -30,12 +30,12 @@ class Pelanggan extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_kota, nama', 'required'),
+			array('id_kota, nama,jarak', 'required'),
 			array('id_kota', 'numerical', 'integerOnly'=>true),
 			array('nama, alamat,no_telepon', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_pelanggan, id_kota, nama, alamat,no_telepon', 'safe', 'on'=>'search'),
+			array('id_pelanggan, id_kota, nama, alamat,no_telepon,jarak', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,7 +61,8 @@ class Pelanggan extends CActiveRecord
 			'id_kota' => 'Id Kota',
 			'nama' => 'Nama',
 			'alamat' => 'Alamat',
-			'no_telepon' => 'No Telepon'
+			'no_telepon' => 'No Telepon',
+			'jarak' => 'Jarak (meter)'
 		);
 	}
 

@@ -16,6 +16,8 @@ $this->breadcrumbs=array(
 			Data Pesanan
 		</div>
 		<div>
+			<br>
+			<a href="<?=Yii::app()->createUrl("gudang/ruteTerdekat")?>" class="btn btn-info">Lihat Prioritas Pengiriman berdasarkan jarak terdekat</a>
 			<?php
 			$this->widget('HarapanBaruGrid', array(
 				'id'=>'dynamic-table-pesanan',
