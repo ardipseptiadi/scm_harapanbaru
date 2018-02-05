@@ -13,7 +13,7 @@ $this->breadcrumbs=array(
 			<div class="pull-right tableTools-container"></div>
 		</div>
 		<div class="table-header">
-			Data Pesanan
+			Data Pengiriman
 		</div>
 		<div>
 			<?php
@@ -174,7 +174,7 @@ Yii::app()->clientScript->registerScript('pengirimanPopup', '
 	    	autoclose:true,
 	    	format:"yyyy-mm-dd"
 	    });
-			$(\'.gridKirim\').on(\'click\',function(){
+			$("body").on(\'click\',".gridKirim",function(){
 				console.log("hello");
 					var dataId = $(this).attr("data-id");
 					console.log(dataId);
