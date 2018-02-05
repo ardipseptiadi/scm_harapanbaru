@@ -18,7 +18,7 @@ $this->menu=array(
 
 		<div class="button-groups">
 			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('admin/supplier/create'); ?>">Tambah</a>
-			<a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('admin/supplier/admin'); ?>">Manage</a>
+			<!-- <a class="btn btn-primary" href="<?php echo Yii::app()->createUrl('admin/supplier/admin'); ?>">Manage</a> -->
 		</div>
 
 		<div class="clearfix">
