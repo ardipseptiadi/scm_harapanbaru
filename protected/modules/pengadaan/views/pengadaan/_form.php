@@ -42,10 +42,12 @@
     </div>
 
 		<div class="form-group">
-			<label class="control-label col-sm-2">&nbsp;</label>
 			<label class="control-label col-sm-2">Peramalan</label>
 			<div class="col-sm-3">
 				<?php echo CHtml::textField('ramal','',['id'=>'ramal','class'=>'form-control','readonly'=>true]) ?>
+			</div>
+			<div class="col-sm-3">
+				<?php echo CHtml::textField('ramal_bulat','',['id'=>'ramal_bulat','class'=>'form-control','readonly'=>true]) ?>
 			</div>
 			<div class="col-sm-3">
 				<?php echo CHtml::numberField('qty', '',
@@ -69,6 +71,9 @@
 			foreach ($cart->rawData as $data_cart) {
 				$total += ($data_cart['qty']*$data_cart['harga']);
 			}
+			$asd_123 = array(1=>"Supplier 1",
+								 2=>"Supplier 2",
+								 3=>"Supplierasd 3");
 			$this->widget('zii.widgets.grid.CGridView',array(
 					'id' => 'cart-grid',
 					'dataProvider' => $cart,
@@ -92,11 +97,13 @@
 						array(
 							'name' => 'Supplier',
 							'type' => 'raw',
-							'value'=> ' CHtml::dropDownList(\'someName\',"",
-		             array(\'1\'=>\'Supplier 1\',
-		                        \'2\'=>\'Supplier 2\',
-		                        \'We\'=>\'Supplier 3\')
-		              )',
+							'value'=> function($data){
+								$lst_sp = [];
+								if(isset($data['list_supp'])){
+									$lst_sp = json_decode($data['list_supp']);
+									}
+								return CHtml::dropDownList("supplier_part","",$lst_sp,['empty'=>'--Pilih--']);
+							},
 						),
 						array(
 							'name' => 'Subtotal',

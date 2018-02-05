@@ -17,14 +17,18 @@ $(document).ready(function(){
           var value_ramal = '0';
           if(response.status){
             value_ramal = response.hasil;
+            value_ramal_bulat = "="+Math.round(value_ramal);
           }else{
             value_ramal = "Tidak Ada";
+            value_ramal_bulat = value_ramal;
           }
           $('#ramal').attr('value',value_ramal);
+          $('#ramal_bulat').attr('value',value_ramal_bulat);
         }
       });
     }else{
       $('#ramal').attr('value','');
+      $('#ramal_bulat').attr('value','');
     }
   });
 });

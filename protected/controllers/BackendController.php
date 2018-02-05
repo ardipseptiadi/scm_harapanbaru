@@ -51,6 +51,14 @@ class BackendController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
+	public function actionForgot()
+	{
+		$model = new ForgotForm;
+		// $this-
+		$this->layout = '//layouts/login';
+		$this->render('forgot');
+	}
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

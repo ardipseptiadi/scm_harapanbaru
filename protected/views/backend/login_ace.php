@@ -52,7 +52,7 @@
                                     <div class="clearfix">
                                         <label class="inline">
                                             <?php echo $form->checkBox($model,'rememberMe',array('class'=>'ace')); ?>
-                                            <span class="lbl"> Remember Me</span>
+                                            <span class="lbl"> Ingat saya</span>
                                         </label>
 
                                         <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
@@ -69,12 +69,12 @@
                         </div><!-- /.widget-main -->
 
                         <div class="toolbar clearfix">
-                            <!--<div>
+                            <div>
                                 <a href="#" data-target="#forgot-box" class="forgot-password-link">
                                     <i class="ace-icon fa fa-arrow-left"></i>
-                                    I forgot my password
+                                    Lupa password
                                 </a>
-                            </div>-->
+                            </div>
 
                             <!--<div>
                                 <a href="#" data-target="#signup-box" class="user-signup-link">
@@ -91,27 +91,27 @@
                         <div class="widget-main">
                             <h4 class="header red lighter bigger">
                                 <i class="ace-icon fa fa-key"></i>
-                                Retrieve Password
+                                Kembalikan Password
                             </h4>
 
                             <div class="space-6"></div>
                             <p>
-                                Enter your email and to receive instructions
+                                Silahkan masukkan email untuk menerima instruksi selanjutnya.
                             </p>
 
-                            <form>
+                            <form method="post" action="<?=Yii::app()->createUrl('backend/forgot') ?>">
                                 <fieldset>
                                     <label class="block clearfix">
                                         <span class="block input-icon input-icon-right">
-                                            <input type="email" class="form-control" placeholder="Email" />
+                                            <input type="email" name="forgotEmail" class="form-control" placeholder="Email" />
                                             <i class="ace-icon fa fa-envelope"></i>
                                         </span>
                                     </label>
 
                                     <div class="clearfix">
-                                        <button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+                                        <button type="submit" = class="width-35 pull-right btn btn-sm btn-danger">
                                             <i class="ace-icon fa fa-lightbulb-o"></i>
-                                            <span class="bigger-110">Send Me!</span>
+                                            <span class="bigger-110">Kirim</span>
                                         </button>
                                     </div>
                                 </fieldset>
@@ -120,7 +120,7 @@
 
                         <div class="toolbar center">
                             <a href="#" data-target="#login-box" class="back-to-login-link">
-                                Back to login
+                                Kembali ke Login
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
                         </div>
@@ -207,3 +207,14 @@
         </div>
     </div><!-- /.col -->
 </div><!-- /.row -->
+
+<?php
+Yii::app()->clientScript->registerScript('script-forgot',"
+$(document).on('click', '.toolbar a[data-target]', function(e) {
+				e.preventDefault();
+				var target = $(this).data('target');
+				$('.widget-box.visible').removeClass('visible');//hide others
+				$(target).addClass('visible');//show target
+			 });
+", CClientScript::POS_END);
+ ?>

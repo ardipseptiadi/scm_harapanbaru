@@ -142,7 +142,9 @@ class PengadaanController extends Controller
 			$id = count($data) +1;
 		}
 		$prd = Part::model()->findByPk($id_part);
-		array_push($data,['id'=>$id,'id_part'=>$id_part,'nama'=>$prd->nama_part,'qty'=>$qty,'harga'=>$prd->harga]);
+		$supp_prd = SupplierPart::model()->findAllByAttributes(['id_part'=>$id_part]);
+		$list_supp =  CJSON::encode(CHtml::listData($supp_prd,'id_supplier_part','idSupplier.nama'));
+		array_push($data,['id'=>$id,'id_part'=>$id_part,'nama'=>$prd->nama_part,'qty'=>$qty,'harga'=>$prd->harga,'list_supp'=>$list_supp]);
 		Yii::app()->session['cart'] = $data;
 		echo CJSON::encode(['responseText'=>'berhasil','status'=>true]);
 	}
