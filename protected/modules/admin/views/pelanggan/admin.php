@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Pelanggans</h1>
+<h1>Manage Pelanggan</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -45,10 +45,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id_pelanggan',
-		'id_kota',
 		'nama',
 		'alamat',
+		'no_telepon',
+		array(
+			'header'=>'Kota',
+			'value'=>'$data->idKota->nama'
+		),
 		array(
 			'class'=>'CButtonColumn',
 		),
