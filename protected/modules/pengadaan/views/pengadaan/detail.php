@@ -20,7 +20,11 @@
                         'header'=>'Part',
                         'value'=>'$data->idPart->nama_part'
                     ),
-                    'qty_pengadaan'
+                    'qty_pengadaan',
+                    array(
+                        'header'=>'Supplier',
+                        'value'=>'$data->idPartSupplier->idSupplier->nama'
+                    ),
                 )
 			));
 			?>

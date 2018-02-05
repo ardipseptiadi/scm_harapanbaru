@@ -40,12 +40,17 @@ class PengadaanController extends Controller
 					$p_detail = new PengadaanDetail();
 					$p_detail->id_pengadaan = $model->getPrimaryKey();
 					$p_detail->id_part = $detail["id_part"];
+					$p_detail->id_part_supplier = (int) $detail['id_supplier_part'];
 					$p_detail->qty_pengadaan = $detail["qty"];
 					$p_detail->created_at = date('Y-m-d h:i:s');
-					$p_detail->save();
+					if(!$p_detail->save()){
+						var_dump($p_detail->getErrors());exit;
+					}
 				}
 				unset(Yii::app()->session['cart']);
 				$this->redirect(array('index'));
+			}else{
+				var_dump($model->getErrors());exit;
 			}
 		}
 		if(!Yii::app()->session['cart']){
@@ -81,9 +86,12 @@ class PengadaanController extends Controller
 						$p_detail = new PengadaanDetail();
 						$p_detail->id_pengadaan = $id;
 						$p_detail->id_part = $detail["id_part"];
+						$p_detail->id_part_supplier = $detail['id_supplier_part'];
 						$p_detail->qty_pengadaan = $detail["qty"];
 						$p_detail->created_at = date('Y-m-d h:i:s');
-						$p_detail->save();
+						if(!$p_detail->save()){
+							var_dump($p_detail->getErrors());exit;
+						}
 					}
 					unset(Yii::app()->session['cart']);
 					$this->redirect(array('index'));
@@ -100,7 +108,12 @@ class PengadaanController extends Controller
 				$id = count($data) +1;
 			}
 			$prd = Part::model()->findByPk($detail->id_part);
-			array_push($data,['id'=>$id,'id_part'=>$detail->id_part,'nama'=>$prd->nama_part,'qty'=>$detail->qty_pengadaan,'harga'=>$prd->harga]);
+			$mSupp = SupplierPart::model()->findByPk($detail->id_part_supplier);
+			$supplier = '';
+			if($mSupp){
+				$supplier = $mSupp->idSupplier->nama;
+			}
+			array_push($data,['id'=>$id,'id_part'=>$detail->id_part,'nama'=>$prd->nama_part,'qty'=>$detail->qty_pengadaan,'harga'=>$prd->harga,'id_supplier_part'=>$detail->id_part_supplier,'supplier'=>$supplier]);
 		}
 		if(!isset(Yii::app()->session['cart'])){
 			Yii::app()->session['cart'] = $data;
@@ -129,6 +142,12 @@ class PengadaanController extends Controller
 	{
 		$id_part = Yii::app()->request->getPost('id_part');
 		$qty = Yii::app()->request->getPost('qty');
+		$id_supp = Yii::app()->request->getPost('supp');
+		$mSupp = SupplierPart::model()->findByPk($id_supp);
+		$supplier = '';
+		if($mSupp){
+			$supplier = $mSupp->idSupplier->nama;
+		}
 		$data = Yii::app()->session['cart'];
 		foreach ($data as $item) {
 			if($item["id_part"] == $id_part){
@@ -144,7 +163,7 @@ class PengadaanController extends Controller
 		$prd = Part::model()->findByPk($id_part);
 		$supp_prd = SupplierPart::model()->findAllByAttributes(['id_part'=>$id_part]);
 		$list_supp =  CJSON::encode(CHtml::listData($supp_prd,'id_supplier_part','idSupplier.nama'));
-		array_push($data,['id'=>$id,'id_part'=>$id_part,'nama'=>$prd->nama_part,'qty'=>$qty,'harga'=>$prd->harga,'list_supp'=>$list_supp]);
+		array_push($data,['id'=>$id,'id_part'=>$id_part,'nama'=>$prd->nama_part,'qty'=>$qty,'harga'=>$prd->harga,'id_supplier_part'=>$id_supp,'supplier'=>$supplier]);
 		Yii::app()->session['cart'] = $data;
 		echo CJSON::encode(['responseText'=>'berhasil','status'=>true]);
 	}
@@ -197,6 +216,24 @@ class PengadaanController extends Controller
 		}else{
 			throw new Exception("ID Tidak Ditemukan", 1);
 		}
+	}
+
+	public function actionGetSupplier()
+	{
+		$id_part = Yii::app()->request->getPost('id_part');
+		$mSupp = SupplierPart::model()->findAllByAttributes(['id_part'=>$id_part]);
+
+		$data=SupplierPart::model()->findAll('id_part=:id_part',
+   array(':id_part'=>(int) $_POST['id_part']));
+		$data = CHtml::listData($mSupp,'id_supplier_part','idSupplier.nama');
+
+		if(count($data)>0){
+			echo "<option value=''>(Pilih Supplier)</option>";
+		}else{
+			echo "<option value=''>(Tidak ada supplier)</option>";
+		}
+   	foreach($data as $value=>$nama_supplier)
+   		echo CHtml::tag('option', array('value'=>$value),CHtml::encode($nama_supplier),true);
 	}
 
 	// Uncomment the following methods and override them if needed

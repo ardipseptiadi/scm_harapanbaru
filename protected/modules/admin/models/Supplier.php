@@ -11,6 +11,7 @@
  */
 class Supplier extends CActiveRecord
 {
+	public $id_part;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -27,12 +28,12 @@ class Supplier extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nama', 'required'),
+			array('nama,id_part', 'required'),
 			array('nama, alamat', 'length', 'max'=>50),
 			array('no_telpon,kode_bank', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_supplier, nama, alamat, no_telpon, kode_bank', 'safe', 'on'=>'search'),
+			array('id_supplier, nama, alamat, no_telpon, kode_bank,id_part', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -44,6 +45,7 @@ class Supplier extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'idSupplierPart' => array(self::BELONGS_TO, 'SupplierPart', 'id_supplier'),
 		);
 	}
 
@@ -57,7 +59,8 @@ class Supplier extends CActiveRecord
 			'nama' => 'Nama',
 			'alamat' => 'Alamat',
 			'no_telpon' => 'No Telpon',
-			'kode_bank' => 'Kode Bank'
+			'kode_bank' => 'Kode Bank',
+			'id_part' => 'Part'
 		);
 	}
 
@@ -98,5 +101,19 @@ class Supplier extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function afterSave()
+	{
+		if($this->isNewRecord){
+			$mPartSupp = new SupplierPart;
+			$mPartSupp->id_part = $this->id_part;
+			$mPartSupp->id_supplier = $this->id_supplier;
+			if($mPartSupp->save()){
+				return true;
+			}else{
+				var_dump($mPartSupp->getErrors());exit;
+			}
+		}
 	}
 }

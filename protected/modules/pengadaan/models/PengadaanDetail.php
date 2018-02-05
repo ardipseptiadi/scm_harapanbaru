@@ -31,13 +31,13 @@ class PengadaanDetail extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_part, id_pengadaan, created_at', 'required'),
-			array('id_part, qty_pengadaan, status, id_pengadaan', 'numerical', 'integerOnly'=>true),
+			array('id_part, id_pengadaan,id_part_supplier, created_at', 'required'),
+			array('id_part,id_part_supplier, qty_pengadaan, status, id_pengadaan', 'numerical', 'integerOnly'=>true),
 			array('harga_pengadaan', 'numerical'),
 			array('no_pengadaan', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_detail_pengadaaan, no_pengadaan, id_part, qty_pengadaan, status, id_pengadaan, harga_pengadaan, created_at', 'safe', 'on'=>'search'),
+			array('id_detail_pengadaaan, no_pengadaan, id_part,id_part_supplier, qty_pengadaan, status, id_pengadaan, harga_pengadaan, created_at', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,7 +50,8 @@ class PengadaanDetail extends CActiveRecord
 		// class name for the relations automatically generated below.
 		Yii::import('application.modules.admin.models.*');
 		return array(
-			'idPart' => array(self::BELONGS_TO,'Part','id_part')
+			'idPart' => array(self::BELONGS_TO,'Part','id_part'),
+			'idPartSupplier' => array(self::BELONGS_TO,'SupplierPart','id_part_supplier')
 		);
 	}
 

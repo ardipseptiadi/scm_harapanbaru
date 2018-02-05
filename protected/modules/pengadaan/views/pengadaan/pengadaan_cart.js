@@ -1,10 +1,16 @@
 $(document).on('click', ".addCart", function () {
   var part_atr = $('#part');
   var qty_atr = $('#qty');
+  var supplier_atr = $('#supplier');
+  if(supplier_atr.val() == ''){
+    alert("Supplier belum dipilih");
+    return false;
+  }
   if((part_atr.val()) && (qty_atr.val())){
     if(qty_atr.val() > 0){
     var id_part = part_atr.val();
     var qty = qty_atr.val();
+    var supp = supplier_atr.val();
     //
     $.ajax({
         type: 'POST',
@@ -12,6 +18,7 @@ $(document).on('click', ".addCart", function () {
         data: {
             id_part: id_part,
             qty: qty,
+            supp:supp,
         },
         url: window.location.origin + '/pengadaan/pengadaan/addCart',
         beforeSend: function(){

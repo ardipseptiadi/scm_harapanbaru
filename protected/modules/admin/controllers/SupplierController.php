@@ -14,7 +14,8 @@ class SupplierController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
+			// 'accessControl',
+			// perform access control for CRUD operations
 			// 'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
@@ -63,6 +64,8 @@ class SupplierController extends Controller
 	public function actionCreate()
 	{
 		$model=new Supplier;
+		$part = Part::model()->findAll();
+		$list_part = CHtml::listData($part,'id_part','nama_part');
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -71,7 +74,7 @@ class SupplierController extends Controller
 		{
 			$model->attributes=$_POST['Supplier'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_supplier));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('create',get_defined_vars());
@@ -85,20 +88,20 @@ class SupplierController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$part = Part::model()->findAll();
+		$list_part = CHtml::listData($part,'id_part','nama_part');
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Supplier']))
+		if(isset($_POST['SupplierPart']))
 		{
-			$model->attributes=$_POST['Supplier'];
+			$model->attributes=$_POST['SupplierPart'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_supplier));
+				$this->redirect(array('index'));
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update',get_defined_vars());
 	}
 
 	/**
@@ -111,8 +114,7 @@ class SupplierController extends Controller
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		$this->redirect(['index']);
 	}
 
 	/**
@@ -120,7 +122,7 @@ class SupplierController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Supplier');
+		$dataProvider=new CActiveDataProvider('SupplierPart');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -150,7 +152,11 @@ class SupplierController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Supplier::model()->findByPk($id);
+		$model=SupplierPart::model()->findByPk($id);
+		$model->nama = $model->idSupplier->nama;
+		$model->alamat = $model->idSupplier->alamat;
+		$model->no_telpon = $model->idSupplier->no_telpon;
+		$model->kode_bank = $model->idSupplier->kode_bank;
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

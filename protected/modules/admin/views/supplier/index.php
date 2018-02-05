@@ -32,10 +32,34 @@ $this->menu=array(
 				'id'=>'dynamic-table',
 				'dataProvider'=>$dataProvider,
 				'columns'=>array(
-					'nama',
-					'alamat',
-					'no_telpon',
-					'kode_bank'
+					'idSupplier.nama',
+					'idSupplier.alamat',
+					'idSupplier.no_telpon',
+					'idSupplier.kode_bank',
+					'idPart.nama_part',
+					array(
+						'header'=>'Aksi',
+						'class' => 'CButtonColumn',
+						'template' => '<div class="btn-group">{ubah}{hapus}</div>',
+						'htmlOptions' => ['class'=>'col-sm-2'],
+						'buttons'=>array(
+							'ubah'=>array(
+								'label' => 'Ubah',
+								'url' => 'Yii::app()->createUrl("admin/supplier/update",array("id"=>$data->id_supplier_part))',
+								'options' => array(
+									'class' => 'btn btn-xs btn-default'
+								)
+							),
+              'hapus'=>array(
+								'label' => 'Hapus',
+								'click' => 'function() {if(!confirm("Anda yakin akan menghapus?")) {return false;}}',
+								'url' => 'Yii::app()->createUrl("admin/supplier/delete",array("id"=>$data->id_supplier_part))',
+								'options' => array(
+									'class' => 'btn btn-xs btn-info'
+								)
+							)
+						)
+					)
 				),
 			)); ?>
 		</div>

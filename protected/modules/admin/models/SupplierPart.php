@@ -10,6 +10,10 @@
  */
 class SupplierPart extends CActiveRecord
 {
+	public $nama;
+	public $alamat;
+	public $kode_bank;
+	public $no_telpon;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -30,7 +34,7 @@ class SupplierPart extends CActiveRecord
 			array('id_supplier, id_part', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_supplier_part, id_supplier, id_part', 'safe', 'on'=>'search'),
+			array('id_supplier_part, id_supplier, id_part,nama,alamat,kode_bank', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,6 +47,7 @@ class SupplierPart extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'idSupplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
+			'idPart' => array(self::BELONGS_TO, 'Part', 'id_part'),
 		);
 	}
 

@@ -33,11 +33,26 @@
         <div class="col-sm-8">
             <?php  echo CHtml::dropDownList('part', 'data_p',
                 $list_part,
-                array('empty' => '(Pilih Part)',
+                array(
+									'prompt' => '(Pilih Part)',
+                  'class' => 'form-control',
+									'ajax' => array(
+										'type' => 'POST',
+										'url' => Yii::app()->createUrl('pengadaan/pengadaan/getSupplier'),
+										'update' => '#supplier',
+										'data' =>['id_part'=>'js:this.value']
+									)
+                    )); ?>
+        </div>
+    </div>
+		<div class="form-group">
+				<label class="control-label col-sm-2">Pilih Supplier</label>
+        <div class="col-sm-8">
+            <?php  echo CHtml::dropDownList('supplier', 'data_s',[],
+                array(
+									'empty' => '(Pilih part dahulu)',
                                 'class' => 'form-control'
                     )); ?>
-
-
         </div>
     </div>
 
@@ -58,9 +73,9 @@
 	                        'placeholder'=>'Quantity',
 	                    )); ?>
 			</div>
-			<div class="col-sm-2">
-<?php echo CHtml::button('Tambah', array('class' => 'addCart')); ?>
-			</div>
+		</div>
+		<div class="form-group center">
+<?php echo CHtml::button('Tambah', array('class' => 'addCart btn btn-xs btn-primary')); ?>
 		</div>
 
 		<p id="add_cart_info"></p>
@@ -71,9 +86,6 @@
 			foreach ($cart->rawData as $data_cart) {
 				$total += ($data_cart['qty']*$data_cart['harga']);
 			}
-			$asd_123 = array(1=>"Supplier 1",
-								 2=>"Supplier 2",
-								 3=>"Supplierasd 3");
 			$this->widget('zii.widgets.grid.CGridView',array(
 					'id' => 'cart-grid',
 					'dataProvider' => $cart,
@@ -97,13 +109,8 @@
 						array(
 							'name' => 'Supplier',
 							'type' => 'raw',
-							'value'=> function($data){
-								$lst_sp = [];
-								if(isset($data['list_supp'])){
-									$lst_sp = json_decode($data['list_supp']);
-									}
-								return CHtml::dropDownList("supplier_part","",$lst_sp,['empty'=>'--Pilih--']);
-							},
+							'value' => 'isset($data["supplier"]) ? CHtml::encode($data["supplier"]) : ""',
+							'footer' => 'Total',
 						),
 						array(
 							'name' => 'Subtotal',
@@ -133,7 +140,7 @@
 	</div>
 
 	<div class="form-actions center">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Simpan' : 'Simpan',array('class' => 'btn btn-lg btn-success')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

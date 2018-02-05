@@ -50,6 +50,13 @@
 		</div>
 		<?php echo $form->error($model,'kode_bank'); ?>
 	</div>
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'id_part',['class'=>'col-sm-2 control-label']); ?>
+		<div class="col-sm-10">
+			<?php echo $form->dropDownList($model,'id_part',$list_part,array('empty'=>'--part--')); ?>
+		</div>
+		<?php echo $form->error($model,'id_part'); ?>
+	</div>
 
 	<div class="form-actions center">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-sm btn-success')); ?>

@@ -4,18 +4,30 @@
 
 $this->breadcrumbs=array(
 	'Suppliers'=>array('index'),
-	$model->id_supplier=>array('view','id'=>$model->id_supplier),
-	'Update',
+	'Create',
 );
 
 $this->menu=array(
 	array('label'=>'List Supplier', 'url'=>array('index')),
-	array('label'=>'Create Supplier', 'url'=>array('create')),
-	array('label'=>'View Supplier', 'url'=>array('view', 'id'=>$model->id_supplier)),
 	array('label'=>'Manage Supplier', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Supplier <?php echo $model->id_supplier; ?></h1>
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<div class="widget-box">
+			<div class="widget-header">
+				<h4 class="widget-title">Ubah Supplier</h4>
+			</div>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+			<div class="widget-body">
+				<div class="widget-main">
+
+					<?php $this->renderPartial('_form', get_defined_vars()); ?>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
