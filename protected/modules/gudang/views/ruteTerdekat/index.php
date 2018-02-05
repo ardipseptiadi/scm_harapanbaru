@@ -11,16 +11,11 @@
 		</div>
     <div>
       <?php
-      $this->widget('zii.widgets.grid.CGridView',array(
-					'id' => 'cart-grid',
+      $this->widget('HarapanBaruGrid',array(
+					'id' => 'dt-grid',
 					'dataProvider' => $dt,
 					'summaryText' => false,
 					'columns' => array(
-						array(
-							'name' => 'Ranking',
-							'type' => 'raw',
-							'value' => 'CHtml::encode($data["ranking"])',
-						),
 						array(
 							'name' => 'Pesanan',
 							'type' => 'raw',
@@ -36,10 +31,13 @@
 							'type' => 'raw',
 							'value' => 'CHtml::encode($data["jarak"])',
 						),
+						array(
+							'name' => 'Ranking',
+							'type' => 'raw',
+							'value' => 'CHtml::encode($data["ranking"])',
+						),
 					),
 			)); ?>
     </div>
-		<div class="clearfix">
-			<div class="pull-right tableTools-container"></div>
-		</div>
+</div>
 </div>

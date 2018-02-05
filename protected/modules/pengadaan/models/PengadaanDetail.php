@@ -1,5 +1,8 @@
 <?php
 
+Yii::import('application.modules.admin.models.*');
+Yii::import('application.modules.pemasaran.models.*');
+Yii::import('application.modules.gudang.models.*');
 /**
  * This is the model class for table "hb_pengadaan_detail".
  *
@@ -48,7 +51,6 @@ class PengadaanDetail extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		Yii::import('application.modules.admin.models.*');
 		return array(
 			'idPart' => array(self::BELONGS_TO,'Part','id_part'),
 			'idPartSupplier' => array(self::BELONGS_TO,'SupplierPart','id_part_supplier')
@@ -113,5 +115,30 @@ class PengadaanDetail extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function afterSave()
+	{
+		if($this->isNewRecord){
+			$mPartStock = PartStock::model()->findByPk($this->id_part);
+			$mRiwayat = new RiwayatPersediaan;
+			$mRiwayat->id_part = $this->id_part;
+			$mRiwayat->jumlah = -1 * $this->qty_pengadaan;
+			$mRiwayat->tgl_riwayat =date('Y-m-d');
+			$mRiwayat->created_at = date('Y-m-d h:i:s');
+			$mRiwayat->created_by = "pengadaan";
+			if($mRiwayat->save()){
+				$mPartStock->qty_in_hand = $mPartStock->qty_in_hand - $this->qty_pengadaan;
+				$mPartStock->last_update = date('Y-m-d h:i:s');
+				$mPartStock->updated_by = 'pengadaan';
+				if($mPartStock->update()){
+					return true;
+				}else{
+					var_dump($mPartStock->getErrors());exit;
+				}
+			}else{
+				var_dump($mRiwayat->getErrors());exit;
+			}
+		}
 	}
 }
